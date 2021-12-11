@@ -1,6 +1,12 @@
-<?php require_once("../resources/config.php") ?>
+<?php 
 
-<?php include(TEMPLATE_FRONT . DS . "header.php") ?>
+require_once("../resources/config.php");
+
+include(TEMPLATE_FRONT . DS . "header.php");
+
+// echo $_SESSION['product_4'];
+
+?>
 
 
 <!-- Page Content -->
@@ -10,6 +16,12 @@
   <!-- /.row --> 
 
   <div class="row">
+
+    <h1 class="text-center bg-warning">
+      <?php       
+        display_message();            
+      ?>
+    </h1>
 
     <h1>Checkout</h1>
 

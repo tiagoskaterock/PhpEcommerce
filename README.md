@@ -11,3 +11,5 @@
 ![admin](/4.png)
 
 ![contact](/5.png)
+
+![checkout](/6.png)

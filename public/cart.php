@@ -9,14 +9,25 @@
       WHERE id = " . escape_string($_GET['add']) . "");
     confirm($query);
 
+    print_r($_GET);
+
+    echo "<hr>";
+
     while($row = fetch_array($query)) {
+
+      echo "<pre>";
+      print_r($row);
+      echo "</pre>";
+
+      //die();
 
       if ($row['quantity'] != $_SESSION['product_' . $_GET['add']]) {
         $_SESSION['product_' . $_GET['add']] += 1;
+        redirect('checkout.php');
       }
       else {
-        set_message("We only have " . $row['quantity'] . " available");
-        redirect('chechout.php');
+        set_message("We only have " . $row['quantity'] . " {$row['title']} available");
+        redirect('checkout.php');
       }
 
     }
