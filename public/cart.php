@@ -57,6 +57,9 @@
     else {
       redirect('checkout');            
     }
-  }      
+  }    
+
+
+  
 
 ?>
