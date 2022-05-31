@@ -4,8 +4,6 @@ require_once("../resources/config.php");
 
 include(TEMPLATE_FRONT . DS . "header.php");
 
-// echo $_SESSION['product_4'];
-
 ?>
 
 
@@ -33,17 +31,31 @@ include(TEMPLATE_FRONT . DS . "header.php");
            <th>Price</th>
            <th>Quantity</th>
            <th>Sub-total</th>
+           <th>Actions</th>
            
          </tr>
        </thead>
+
+       <?php 
+        
+          echo '<br>';
+          print_r($_SESSION);
+          echo '</br>';      
+        
+        ?>
+        
        <tbody>
-        <tr>
-          <td>apple</td>
-          <td>$23</td>
-          <td>3</td>
-          <td>2</td>
-          
-        </tr>
+
+        <?php foreach ($_SESSION as $key): ?>
+          <tr>
+            <td>apple</td>
+            <td>$23</td>
+            <td>3</td>
+            <td>2</td>
+            <td><a href="cart.php?remove=10">Remove</a></td>            
+            <td><a href="cart.php?delete=10">Delete</a></td>            
+          </tr>          
+        <?php endforeach ?>
       </tbody>
     </table>
   </form>
@@ -78,9 +90,7 @@ include(TEMPLATE_FRONT . DS . "header.php");
 
 </div><!-- CART TOTALS-->
 
-
 </div><!--Main Content-->
-
 
 <hr>
 

@@ -1,0 +1,15 @@
+insert into categories (title) values ('Wall Protection');
+insert into categories (title) values ('Wall Protection');
+insert into categories (title) values ('Fire Sprinkler System');
+insert into categories (title) values ('Masonry & Precast');
+insert into categories (title) values ('Roofing (Asphalt)');
+insert into categories (title) values ('Hard Tile & Stone');
+insert into categories (title) values ('Site Furnishings');
+insert into categories (title) values ('Curb & Gutter');
+insert into categories (title) values ('Construction Clean and Final Clean');
+insert into categories (title) values ('Masonry & Precast');
+insert into categories (title) values ('Drywall & Acoustical (MOB)');
+insert into categories (title) values ('EIFS');
+insert into categories (title) values ('Painting & Vinyl Wall Covering');
+insert into categories (title) values ('Soft Flooring and Base');
+insert into categories (title) values ('Exterior Signage');

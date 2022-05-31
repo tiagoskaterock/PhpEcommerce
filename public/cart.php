@@ -7,49 +7,56 @@
     $query = query(
       "SELECT * FROM products 
       WHERE id = " . escape_string($_GET['add']) . "");
-    confirm($query);
 
-    print_r($_GET);
+    confirm($query);
 
     echo "<hr>";
 
     while($row = fetch_array($query)) {
 
-      echo "<pre>";
-      print_r($row);
-      echo "</pre>";
-
-      //die();
-
       if ($row['quantity'] != $_SESSION['product_' . $_GET['add']]) {
         $_SESSION['product_' . $_GET['add']] += 1;
-        redirect('checkout.php');
+        redirect('checkout');
       }
       else {
         set_message("We only have " . $row['quantity'] . " {$row['title']} available");
-        redirect('checkout.php');
+        redirect('checkout');
       }
 
     }
-    /*
-    $id = $_GET['add'];
-
-    echo $id;
-
-    $_SESSION['product_' . $id] =+ 1;
-
-    // session_destroy();
-
-    redirect(HOMEPAGE);
-    */
 
   }
 
-
 ?>
 
-<h1>
-  <?php if (isset($_SESSION['product'])): ?>
-    print_r($_SESSION['product'])
-  <?php endif ?>  
-</h1>
+
+<?php 
+  // remove apenas um de cada vez
+  if (isset($_GET['remove'])) {
+    $_SESSION['product_' . $_GET['remove']]--;
+
+    // confere se existe mais de um produto
+    if ($_SESSION['product_' . $_GET['remove']] < 1) {
+      $_SESSION['product_' . $_GET['remove']] = 0;
+      redirect('checkout');
+    }
+    else {
+      redirect('checkout');
+    }
+  }  
+
+
+  // remove TODOS de cada vez
+  if (isset($_GET['delete'])) {
+    $_SESSION['product_' . $_GET['delete']] = 0;
+
+    // confere se existe mais de um produto
+    if ($_SESSION['product_' . $_GET['delete']] < 1) {
+      redirect('checkout');      
+    }
+    else {
+      redirect('checkout');            
+    }
+  }      
+
+?>

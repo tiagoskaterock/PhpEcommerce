@@ -72,6 +72,37 @@
 		}
 	}
 
+
+	function get_category_name() {
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+		}
+		$query = query("SELECT * FROM categories WHERE id = $id");
+		confirm($query);
+
+		while($row = fetch_array($query)) {
+			$cat_name = $row['title'];
+		}
+
+		return $cat_name;
+	}
+
+
+	function get_category_description() {
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+		}
+		$query = query("SELECT * FROM categories WHERE id = $id");
+		confirm($query);
+
+		while($row = fetch_array($query)) {
+			$description = $row['description'];
+		}
+
+		return $description;
+	}
+
+
 	function get_products_in_shop_page() {
 		$query = query("SELECT * FROM products");
     confirm($query);

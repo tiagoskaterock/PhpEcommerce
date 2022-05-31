@@ -23,13 +23,6 @@ $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 
-// routes
-define('HOMEPAGE', '/php_ecommerce/public');
-
-
-
 require_once('functions.php');
-
-
 
 ?>
