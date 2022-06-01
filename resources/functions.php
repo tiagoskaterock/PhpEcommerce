@@ -2,10 +2,15 @@
 
 function cart() {
 
+	$total_itens = 0;
+
 	// pegando o id correto
 	foreach ($_SESSION as $name => $value) {
 
 		if ($value > 0) {
+
+			// quantidade em sessão
+			$quantity = $name;
 
 			// descobre o id descontando pelo tamanho da string
 			$lenght = strlen($name);
@@ -18,12 +23,15 @@ function cart() {
 			  confirm($query);
 
 			  while($row = fetch_array($query)) {
+
+			  	$total_itens++;
+
 			    ?>
 			    <tr>
 			      <td><?= $row['title'] ?></td>
 			      <td>$ <?= $row['price'] ?></td>
-			      <td><?= $row['quantity'] ?></td>
-			      <td><?= $row['quantity'] ?></td>
+			      <td><?= $value ?></td>
+			      <td>$ <?= $row['price'] * $value ?></td>
 			      <td>
 			      	<!-- remopve apenas um  -->
 			      	<a class="btn btn-sm btn-warning" href="cart.php?remove=<?= $row['id'] ?>">
@@ -48,8 +56,18 @@ function cart() {
 			} // end if subtr()
 
 		} // if ($value > 0) 
-		
+
 	} // end foreach()
+		
+	// caso  não tenha nenhum produto no carrinho
+	if ($total_itens == 0) {
+		?>
+		<div class="alert alert-info">
+			There are no itens in your cart
+		</div>
+		<a href="." class="btn btn-sm btn-primary">Home Page</a>
+		<?php
+	}
 
 } // end function cart()  
 
