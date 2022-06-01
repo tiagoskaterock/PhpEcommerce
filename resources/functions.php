@@ -32,6 +32,7 @@ function cart() {
 			      <td>$ <?= $row['price'] ?></td>
 			      <td><?= $value ?></td>
 			      <td>$ <?= $row['price'] * $value ?></td>
+
 			      <td>
 			      	<!-- remopve apenas um  -->
 			      	<a class="btn btn-sm btn-warning" href="cart.php?remove=<?= $row['id'] ?>">
@@ -70,6 +71,69 @@ function cart() {
 	}
 
 } // end function cart()  
+
+
+
+
+
+
+
+function total_itens_cart() {
+
+	$total_itens = 0;
+
+	foreach ($_SESSION as $name => $value) {
+
+		if ($value > 0) {
+			$total_itens += $value;
+		} 
+
+	} 
+		
+	return $total_itens;
+}
+
+
+
+
+
+
+function total_order_cart() {
+	
+	$total_order = 0;
+
+	// pegando o id correto
+	foreach ($_SESSION as $name => $value) {
+
+		if ($value > 0) {
+
+			// quantidade em sessão
+			$quantity = $name;
+
+			// descobre o id descontando pelo tamanho da string
+			$lenght = strlen($name);
+			
+			$id = substr($name, 8, $lenght);
+
+			if (substr($name, 0, 8) == 'product_') {
+				
+			  $query = query("SELECT * FROM products WHERE id = $id");
+			  confirm($query);
+
+			  while($row = fetch_array($query)) {
+			     	
+			    $total_order += $row['price'] * $value;
+
+			  } // end while
+
+			} // end if subtr()
+
+		} // if ($value > 0) 
+
+	} // end foreach()
+
+	echo $total_order;
+}
 
 
 
