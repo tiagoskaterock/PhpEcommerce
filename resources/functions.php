@@ -5,46 +5,50 @@ function cart() {
 	// pegando o id correto
 	foreach ($_SESSION as $name => $value) {
 
-		
-		echo substr($name, 0, 8);
-		// die();
-		
-		
-		if (substr($name, 0, 8) == 'product_') {
+		if ($value > 0) {
+
+			// descobre o id descontando pelo tamanho da string
+			$lenght = strlen($name);
 			
-		  $query = query("SELECT * FROM products");
-		  confirm($query);
+			$id = substr($name, 8, $lenght);
 
-		  while($row = fetch_array($query)) {
-		    ?>
-		    <tr>
-		      <td><?= $row['title'] ?></td>
-		      <td>$ <?= $row['price'] ?></td>
-		      <td><?= $row['quantity'] ?></td>
-		      <td><?= $row['quantity'] ?></td>
-		      <td>
-		      	<!-- remopve apenas um  -->
-		      	<a class="btn btn-sm btn-warning" href="cart.php?remove=<?= $row['id'] ?>">
-		      		<span class="glyphicon glyphicon-minus" title="Remove one item <?= $row['title'] ?>"></span>		
-		      	</a>
+			if (substr($name, 0, 8) == 'product_') {
+				
+			  $query = query("SELECT * FROM products WHERE id = $id");
+			  confirm($query);
 
-		      	<!-- adiciona -->
-		      	<a class="btn btn-sm btn-success" href="cart.php?add=<?= $row['id'] ?>">
-		      		<span class="glyphicon glyphicon-plus" title="Add one more item <?= $row['title'] ?>"></span>
-		      	</a>
+			  while($row = fetch_array($query)) {
+			    ?>
+			    <tr>
+			      <td><?= $row['title'] ?></td>
+			      <td>$ <?= $row['price'] ?></td>
+			      <td><?= $row['quantity'] ?></td>
+			      <td><?= $row['quantity'] ?></td>
+			      <td>
+			      	<!-- remopve apenas um  -->
+			      	<a class="btn btn-sm btn-warning" href="cart.php?remove=<?= $row['id'] ?>">
+			      		<span class="glyphicon glyphicon-minus" title="Remove one item <?= $row['title'] ?>"></span>		
+			      	</a>
 
-		      	<!-- exclui todos -->
-		      	<a title="Remove all items <?= $row['title'] ?>" class="btn btn-sm btn-danger" href="cart.php?delete=<?= $row['id'] ?>">
-		      		<span class="glyphicon glyphicon-trash"></span>      			
-		      	</a>
-		      </td>                  
-		    </tr> 
-		    <?php
+			      	<!-- adiciona -->
+			      	<a class="btn btn-sm btn-success" href="cart.php?add=<?= $row['id'] ?>">
+			      		<span class="glyphicon glyphicon-plus" title="Add one more item <?= $row['title'] ?>"></span>
+			      	</a>
 
-		  } // end while
+			      	<!-- exclui todos -->
+			      	<a title="Remove all items <?= $row['title'] ?>" class="btn btn-sm btn-danger" href="cart.php?delete=<?= $row['id'] ?>">
+			      		<span class="glyphicon glyphicon-trash"></span>      			
+			      	</a>
+			      </td>                  
+			    </tr> 
+			    <?php
 
-		} // end if subtr()
+			  } // end while
 
+			} // end if subtr()
+
+		} // if ($value > 0) 
+		
 	} // end foreach()
 
 } // end function cart()  
