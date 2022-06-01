@@ -11,8 +11,22 @@ function cart() {
       <td>$ <?= $row['price'] ?></td>
       <td><?= $row['quantity'] ?></td>
       <td><?= $row['quantity'] ?></td>
-      <td><a href="cart.php?remove=10">Remove</a></td>            
-      <td><a href="cart.php?delete=10">Delete</a></td>            
+      <td>
+      	<!-- remopve apenas um  -->
+      	<a class="btn btn-sm btn-warning" href="cart.php?remove=<?= $row['id'] ?>">
+      		<span class="glyphicon glyphicon-minus" title="Remove one item <?= $row['title'] ?>"></span>		
+      	</a>
+
+      	<!-- adiciona -->
+      	<a class="btn btn-sm btn-success" href="cart.php?add=<?= $row['id'] ?>">
+      		<span class="glyphicon glyphicon-plus" title="Add one more item <?= $row['title'] ?>"></span>
+      	</a>
+
+      	<!-- exclui todos -->
+      	<a title="Remove all items <?= $row['title'] ?>" class="btn btn-sm btn-danger" href="cart.php?delete=<?= $row['id'] ?>">
+      		<span class="glyphicon glyphicon-trash"></span>      			
+      	</a>
+      </td>                  
     </tr> 
     <?php
   }

@@ -36,11 +36,19 @@ include(TEMPLATE_FRONT . DS . "header.php");
          </tr>
        </thead>
 
+       <?php 
+       /*
+         echo '<br>';
+         print_r($_SESSION);
+         echo '</br>';
+       */
+       ?>
+
 
        <tbody>
          <?php cart() ?>
       </tbody>
-      
+
 
     </table>
   </form>
