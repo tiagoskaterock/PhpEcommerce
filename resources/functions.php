@@ -226,6 +226,19 @@ function get_category_name() {
 }
 
 
+
+function get_total_categories() {
+	$query = query("SELECT COUNT(id) as total FROM categories");
+	confirm($query);
+
+	while($row = fetch_array($query)) {
+		$total = $row['total'];
+	}
+
+	return $total;
+}
+
+
 function get_category_description() {
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
@@ -304,6 +317,21 @@ function get_products_in_category_page() {
 
   }
 }
+
+
+
+function get_total_products() {
+	$query = query("SELECT COUNT(id) as total FROM products");
+	confirm($query);
+
+	while($row = fetch_array($query)) {
+		$total = $row['total'];
+	}
+
+	return $total;
+}
+
+
 
 function getCategories() {
 

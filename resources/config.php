@@ -3,7 +3,6 @@
 ob_start();
 
 session_start();
-// session_destroy();
 
 defined("DS") ? null : define("DS", DIRECTORY_SEPARATOR);
 
@@ -20,8 +19,6 @@ defined("DB_PASSWORD") ? null : define("DB_PASSWORD", "123");
 defined("DB_NAME") ? null : define("DB_NAME", "ecommerce");
 
 $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-
 
 require_once('functions.php');
 
