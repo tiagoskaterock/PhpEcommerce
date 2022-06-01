@@ -132,7 +132,7 @@ function total_order_cart() {
 
 	} // end foreach()
 
-	echo $total_order;
+	return $total_order;
 }
 
 

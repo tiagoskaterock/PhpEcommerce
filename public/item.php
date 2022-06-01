@@ -14,6 +14,7 @@
 
     while($row = fetch_array($query)) {
 
+      $id = $row['id'];
       $price = $row['price'];
       $title = $row['title'];
       $description = $row['description'];
@@ -65,7 +66,7 @@
 
         <form action="">
           <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="ADD TO CART">
+            <a type="submit" class="btn btn-sm btn-primary" href="cart?add=<?= $id ?>">ADD TO CART</a>
           </div>
         </form>
 
