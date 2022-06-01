@@ -2,14 +2,20 @@
 
 [Udemy Classes](https://www.udemy.com/course/php-for-beginners-how-to-build-an-ecommerce-store/)
 
-![index](img/1.png)
+![site](img/1.png)
 
-![shop](img/2.png)
+![site](img/2.png)
 
-![login](img/3.png)
+![site](img/3.png)
 
-![admin](img/4.png)
+![site](img/4.png)
 
-![contact](img/5.png)
+![site](img/5.png)
 
-![checkout](img/6.png)
+![site](img/6.png)
+
+![site](img/7.png)
+
+![site](img/8.png)
+
+![site](img/9.png)
