@@ -26,7 +26,7 @@
     <!-- /.row -->
     <div class="row">
 
-      
+      <!-- orders -->
       <div class="col-lg-4 col-md-6">
         <div class="panel panel-yellow">
           <div class="panel-heading">
@@ -49,9 +49,10 @@
           </a>
         </div>
       </div>
+      <!-- end orders -->
     
 
-
+      <!-- products -->
       <div class="col-lg-4 col-md-6">
         <div class="panel panel-red">
           <div class="panel-heading">
@@ -74,7 +75,12 @@
           </a>
         </div>
       </div>
+      <!-- end products -->
 
+
+
+
+      <!-- categories -->
       <div class="col-lg-4 col-md-6">
         <div class="panel panel-green">
           <div class="panel-heading">
@@ -97,6 +103,9 @@
           </a>
         </div>
       </div>
+      <!-- end categories -->
+
+
 
     </div>
 
