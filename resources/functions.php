@@ -448,6 +448,24 @@ function login_user() {
 
 
 
+
+
+function delete_user() {
+	if (isset($_POST['delete_user'])) {
+
+		$id = $_POST['delete_user'];
+		
+		$query = query("DELETE FROM users WHERE id = $id");
+		confirm($query);
+		
+		$_SESSION['info_message'] = 'User deleted successfully';
+		header("Location: .?page=users");		
+	
+	}
+}
+
+
+
 function send_message() {
   if (isset($_POST['submit'])) {
 

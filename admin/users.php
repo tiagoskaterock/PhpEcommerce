@@ -1,99 +1,86 @@
+<div id="page-wrapper">
 
-        <div id="page-wrapper">
+    <div class="container-fluid">
 
-            <div class="container-fluid">
+        <?php info_message() ?>
 
+            <div class="col-lg-12">
+              
+                <h1 class="page-header">
+                    Users
+                 
+                </h1>
+                  <p class="bg-success">
+                    <?php // echo $message; ?>
+                </p>
 
-
-                    <div class="col-lg-12">
-                      
-
-                        <h1 class="page-header">
-                            Users
-                         
-                        </h1>
-                          <p class="bg-success">
-                            <?php echo $message; ?>
-                        </p>
-
-                        <a href="add_user.php" class="btn btn-primary">Add User</a>
+                <a href="add_user.php" class="btn btn-primary">Add User</a>
 
 
-                        <div class="col-md-12">
+                <div class="col-md-12">
 
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Photo</th>
-                                        <th>Username</th>
-                                        <th>First Name</th>
-                                        <th>Last Name </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Photo</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                                <?php foreach($users as $user): ?>
+                        <?php 
+                        
+                            $query = query("SELECT * FROM users");
 
-                                    <tr>
+                            confirm($query);
 
-                                        <td>2</td>
-                                        <td><img class="admin-user-thumbnail user_image" src="placehold.it/62x62" alt=""></td>
-                                        
-                                        <td>Rico
-                                              <div class="action_links">
+                            while ($row = fetch_array($query)) {  
+                                ?>
+                                <tr>
 
-                                                <a href="">Delete</a>
-                                                <a href="">Edit</a>
-                    
-                                                
-                                            </div>
+                                        <td><?= $row['id'] ?></td>
+                                        <td><img class="admin-user-thumbnail user_image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Breezeicons-actions-22-im-user.svg/1200px-Breezeicons-actions-22-im-user.svg.png" alt="" height="20px"></td>                                                                                         
+                                        <td><?= $row['name'] ?></td>
+                                        <td><?= $row['email'] ?></td>
+
+                                        <td>
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary">
+                                                Edit
+                                            </a>                                               
                                         </td>
-                                        
-                                        
-                                        <td>Edwin</td>
-                                       <td>Diaz</td>
-                                    </tr>
 
 
-                                <?php endforeach; ?>
+                                        <td>
+                                            <form action="" method="post">
+                                                <button class="btn btn-sm btn-danger" type="submit" name="delete_user" value="<?= $row['id'] ?>">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                </tr>
+                                <?php
 
-
-                                    
-                                    
-                                </tbody>
-                            </table> <!--End of Table-->
+                            }      
                         
+                        ?>
 
-                        </div>
+                        </tbody>
 
+                    </table> <!--End of Table-->
+                
 
+                </div>
 
-
-
-
-
-
-
-
-                        
-                    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
+                
             </div>
-            <!-- /.container-fluid -->
 
-        </div>
-        <!-- /#page-wrapper -->
-    
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+<?php delete_user() ?>
