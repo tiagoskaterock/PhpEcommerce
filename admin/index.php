@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../../resources/config.php';
+require_once '../resources/config.php';
 
 // define o título de acordo com a página por get
 isset($_GET['page']) ? define('TITULO', ucfirst($_GET['page'])) : define('TITULO', 'Dashboard');

@@ -11,4 +11,4 @@ session_destroy();
 
 
 // redirecionar para home page
-header("Location: ../public");
+header("Location: ..");
