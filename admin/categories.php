@@ -16,10 +16,12 @@
                     <input type="text" class="form-control" name="title">
                 </div>
 
+                <!--
                 <div class="form-group">
                     <label for="description" >Description</label>
                     <input type="text" class="form-control" name="description">
                 </div>
+            -->
 
                 <div class="form-group">
                     <input name="add_category" type="submit" class="btn btn-primary" value="Add Category">

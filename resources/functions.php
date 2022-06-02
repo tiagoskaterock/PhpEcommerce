@@ -263,6 +263,7 @@ function delete_category() {
 		confirm($query);
 		
 		$_SESSION['info_message'] = 'Categoria excluída com sucesso';
+		header("Location: .?page=categories");
 		
 	}
 }
@@ -413,6 +414,7 @@ function add_category() {
 
 		confirm($query);
 		$_SESSION['info_message'] = 'Categoria criada com sucesso';
+		header("Location: .?page=categories");
 	 }
 
 }
