@@ -1,3 +1,4 @@
+<?php define('TITULO', 'Orders') ?>
 <?php require_once '../../resources/config.php' ?>
 <?php require_once TEMPLATE_BACK . '/header.php' ?>
 
