@@ -9,6 +9,16 @@ function admin_categories() {
 		<tr>
 	    <td><?= $row['id'] ?></td>
 	    <td><?= $row['title'] ?></td>
+
+	    <?php $id = $row['id'] ?>
+	    	   
+	    <td>
+	    	<form action="" method="post">	    		
+		      <button type="submit" class="btn btn-sm btn-danger" name="delete_category" value="<?= $id ?>">		      	
+		      	Delete
+		      </button>
+		    </form>
+	    </td>
 	  </tr>
 	 <?php
 	}
@@ -242,6 +252,23 @@ function get_category_name() {
 
 
 
+
+function delete_category() {
+
+	if (isset($_POST['delete_category'])) {
+
+		$id = $_POST['delete_category'];
+		
+		$query = query("DELETE FROM categories WHERE id = $id");
+		confirm($query);
+		
+		$_SESSION['info_message'] = 'Categoria excluída com sucesso';
+		
+	}
+}
+
+
+
 function get_total_categories() {
 	$query = query("SELECT COUNT(id) as total FROM categories");
 	confirm($query);
@@ -335,6 +362,17 @@ function get_products_in_category_page() {
 
 
 
+function info_message() {
+	?>
+	<?php if ($_SESSION['info_message'] != null): ?>
+    <div class="alert alert-info"><?= $_SESSION['info_message'] ?></div>    
+	<?php endif ?>
+	<?php
+	$_SESSION['info_message'] = null;
+}
+
+
+
 function get_total_products() {
 	$query = query("SELECT COUNT(id) as total FROM products");
 	confirm($query);
@@ -364,20 +402,24 @@ function getCategories() {
 
 
 function add_category() {
+
 	 if (isset($_POST['add_category'])) {
 	 	$title = $_POST['title'];
 	 	$description = $_POST['description'];
-	 	echo '<br>';
-	 	print_r($_POST);
-	 	echo '</br>';
 
 	 	$query = query("INSERT INTO 
 	 			categories (title, description) 
 	 						values ('$title', '$description')");
 
 		confirm($query);
+		$_SESSION['info_message'] = 'Categoria criada com sucesso';
 	 }
+
 }
+
+
+
+
 
 function login_user() {
 

@@ -1,10 +1,6 @@
-<?php 
-
-  add_category();        
-
-?>
-
 <div id="page-wrapper">
+
+    <?php info_message() ?>
 
     <div class="container-fluid">
 
@@ -58,3 +54,7 @@
     </div> <!-- /.container-fluid -->
 
 </div> <!-- /#page-wrapper -->
+
+<?php add_category() ?>
+
+<?php delete_category() ?>
