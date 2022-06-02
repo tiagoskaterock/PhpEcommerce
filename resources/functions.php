@@ -1,5 +1,20 @@
 <?php 
 
+function admin_categories() {
+	$query = query("SELECT * FROM categories");
+	confirm($query);
+
+	while($row = fetch_array($query)) {
+	?>
+		<tr>
+	    <td><?= $row['id'] ?></td>
+	    <td><?= $row['title'] ?></td>
+	  </tr>
+	 <?php
+	}
+}
+
+
 function cart() {
 
 	$total_itens = 0;

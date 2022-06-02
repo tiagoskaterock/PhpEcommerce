@@ -1,4 +1,6 @@
-# ecommerce project with Edwin Diaz Classes
+# Ecommerce project using PHP
+
+database in *ecommerce.sql*
 
 [Udemy Classes](https://www.udemy.com/course/php-for-beginners-how-to-build-an-ecommerce-store/)
 

@@ -1,4 +1,4 @@
-<?php require_once("../resources/config.php") ?>
+<?php require_once("resources/config.php") ?>
 
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
 
@@ -66,7 +66,7 @@
 
         <form action="">
           <div class="form-group">
-            <a type="submit" class="btn btn-sm btn-primary" href="cart?add=<?= $id ?>">ADD TO CART</a>
+            <a type="submit" class="btn btn-sm btn-primary" href="resources/cart?add=<?= $id ?>">ADD TO CART</a>
           </div>
         </form>
 
