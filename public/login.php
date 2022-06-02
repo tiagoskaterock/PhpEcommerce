@@ -19,7 +19,7 @@
           Username<input type="text" name="name" class="form-control"></label>
         </div>
         <div class="form-group"><label for="password">
-          Password<input required type="text" name="password" class="form-control"></label>
+          Password<input required type="password" name="password" class="form-control"></label>
         </div>
 
         <div class="form-group">

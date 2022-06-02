@@ -12,21 +12,44 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+
+
+
                     <li>
                         <a href="shop">Shop</a>
                     </li>
-                    <li>
-                        <a href="login">Login</a>
-                    </li>
-                    <li>
-                        <a href="admin">Admin</a>
-                    </li>
+
+
+                    
+                    <?php if (!isset($_SESSION['username']) || $_SESSION['username'] == null): ?>
+                        <li>
+                            <a href="login">Login</a>
+                        </li>
+                        
+                    <?php else: ?>
+                        <li>
+                            <a href="admin">Admin</a>
+                        </li>                        
+                    <?php endif ?>
+
+
+
+
+
+
+
+
                      <li>
                         <a href="checkout">Checkout</a>
                     </li>
+
+
+
                     <li>
                         <a href="contact">Contact</a>
                     </li>
+
+
 
                 </ul>
             </div>

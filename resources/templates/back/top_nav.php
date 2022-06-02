@@ -6,7 +6,7 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </button>
-  <a class="navbar-brand" href="index.html">SB Admin</a>
+  <a class="navbar-brand" href=".">Olá, <?= ucfirst($_SESSION['username']) ?>!</a>
 </div>
 
 
@@ -14,7 +14,7 @@
 <!-- Top Menu Items -->
 <ul class="nav navbar-right top-nav">
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= ucfirst($_SESSION['username']) ?> <b class="caret"></b></a>
     <ul class="dropdown-menu">
      
       <li class="divider"></li>

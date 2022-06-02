@@ -1,3 +1,11 @@
+<?php 
+
+if ($_SESSION['username'] == null) {
+  header("Location: ../../resources/logout.php");
+}      
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

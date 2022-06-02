@@ -356,11 +356,14 @@ function login_user() {
 
     confirm($query);
 
+    // erro de login
     if(mysqli_num_rows($query) == 0) {
     	set_message('Your credentials are wrong');
       redirect('login');
     }
     else {
+    	// sessão de usuário
+    	$_SESSION['username'] = $name;
       redirect('admin');
     }
   }
