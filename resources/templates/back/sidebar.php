@@ -13,28 +13,28 @@
     <li class="<?php if (TITULO == 'Products'): ?>
       active
     <?php endif ?>">
-      <a href="products"><i class="fa fa-fw fa-bar-chart-o"></i> View Products</a>
+      <a href="?page=products"><i class="fa fa-fw fa-bar-chart-o"></i> View Products</a>
     </li>
 
 
     <li class="<?php if (TITULO == 'Add Products'): ?>
       active
     <?php endif ?>">
-      <a href="add_product"><i class="fa fa-fw fa-table"></i> Add Product</a>
+      <a href="?page=add_product"><i class="fa fa-fw fa-table"></i> Add Product</a>
     </li>
     
 
     <li class="<?php if (TITULO == 'Categories'): ?>
       active
     <?php endif ?>">
-      <a href="categories"><i class="fa fa-fw fa-desktop"></i> Categories</a>
+      <a href="?page=categories"><i class="fa fa-fw fa-desktop"></i> Categories</a>
     </li>
 
 
     <li class="<?php if (TITULO == 'Orders'): ?>
       active
     <?php endif ?>">
-        <a href="orders"><i class="fa fa-fw fa-wrench"></i>Orders</a>
+        <a href="?page=orders"><i class="fa fa-fw fa-wrench"></i>Orders</a>
     </li>
 
 
@@ -42,7 +42,7 @@
     <li class="<?php if (TITULO == 'Users'): ?>
       active
     <?php endif ?>">
-      <a href="users"><i class="fa fa-fw fa-wrench"></i>Users</a>
+      <a href="?page=users"><i class="fa fa-fw fa-wrench"></i>Users</a>
     </li>
 
 

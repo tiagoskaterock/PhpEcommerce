@@ -1,6 +1,3 @@
-<?php define('TITULO', 'Categories') ?>
-<?php require_once '../../resources/config.php' ?>
-<?php require_once TEMPLATE_BACK . '/header.php' ?>
 
 
 
@@ -83,5 +80,3 @@
 
         </div>
         <!-- /#page-wrapper -->
-
-<?php require_once TEMPLATE_BACK . '/header.php' ?>
