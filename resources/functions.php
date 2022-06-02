@@ -449,7 +449,6 @@ function login_user() {
 
 
 
-
 function delete_user() {
 	if (isset($_POST['delete_user'])) {
 
@@ -460,6 +459,23 @@ function delete_user() {
 		
 		$_SESSION['info_message'] = 'User deleted successfully';
 		header("Location: .?page=users");		
+	
+	}
+}
+
+
+
+
+function delete_product() {
+	if (isset($_POST['delete_product'])) {
+
+		$id = $_POST['delete_product'];
+		
+		$query = query("DELETE FROM products WHERE id = $id");
+		confirm($query);
+		
+		$_SESSION['info_message'] = 'Product deleted successfully';
+		header("Location: .?page=products");		
 	
 	}
 }
