@@ -18,18 +18,49 @@
        <th>Title</th>
        <th>Category</th>
        <th>Price</th>
+       <th>Quantity</th>
      </tr>
    </thead>
    <tbody>
 
-    <tr>
-      <td>20</td>
-      <td>Nikon 234 <br>
-        <img src="http://placehold.it/62x62" alt="">
-      </td>
-      <td>Category</td>
-      <td>123</td>
-    </tr>
+
+    <?php 
+    
+      // produtos e categoria do produto
+      $query = query("
+        SELECT 
+          products.title as product , 
+          products.image as image, 
+          products.id as id, 
+          products.price as price, 
+          products.quantity as quantity, 
+          categories.title as category
+        FROM 
+          products 
+        LEFT JOIN 
+          categories 
+        ON 
+          products.cat_id = categories.id");
+
+      confirm($query);
+
+      while ($row = fetch_array($query)) {                
+        ?>
+        <tr>
+          <td><?= $row['id'] ?></td>
+          <td><?= $row['product'] ?> <br>
+            <img src="<?= $row['image'] ?>" alt="<?= $row['product'] ?>" height=75px>
+          </td>
+          <td><?= $row['category'] ?></td>
+          <td>$ <?= $row['price'] ?></td>
+          <td>$ <?= $row['quantity'] ?></td>
+        </tr>
+        <?php
+      }
+    
+    ?>
+
+
 
 
 
