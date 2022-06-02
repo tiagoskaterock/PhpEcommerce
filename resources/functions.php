@@ -361,6 +361,24 @@ function getCategories() {
 		}
 }
 
+
+
+function add_category() {
+	 if (isset($_POST['add_category'])) {
+	 	$title = $_POST['title'];
+	 	$description = $_POST['description'];
+	 	echo '<br>';
+	 	print_r($_POST);
+	 	echo '</br>';
+
+	 	$query = query("INSERT INTO 
+	 			categories (title, description) 
+	 						values ('$title', '$description')");
+
+		confirm($query);
+	 }
+}
+
 function login_user() {
 
 	if (isset($_POST['submit'])) {
