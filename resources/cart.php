@@ -16,11 +16,11 @@
 
       if ($row['quantity'] != $_SESSION['product_' . $_GET['add']]) {
         $_SESSION['product_' . $_GET['add']] += 1;
-        redirect('checkout');
+        redirect('../checkout');
       }
       else {
         set_message("We only have " . $row['quantity'] . " {$row['title']} available");
-        redirect('checkout');
+        redirect('../checkout');
       }
 
     }
@@ -38,10 +38,10 @@
     // confere se existe mais de um produto
     if ($_SESSION['product_' . $_GET['remove']] < 1) {
       $_SESSION['product_' . $_GET['remove']] = 0;
-      redirect('checkout');
+      redirect('../checkout');
     }
     else {
-      redirect('checkout');
+      redirect('../checkout');
     }
   }  
 
@@ -52,10 +52,10 @@
 
     // confere se existe mais de um produto
     if ($_SESSION['product_' . $_GET['delete']] < 1) {
-      redirect('checkout');      
+      redirect('../checkout');      
     }
     else {
-      redirect('checkout');            
+      redirect('../checkout');            
     }
   }    
 

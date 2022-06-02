@@ -35,17 +35,17 @@ function cart() {
 
 			      <td>
 			      	<!-- remopve apenas um  -->
-			      	<a class="btn btn-sm btn-warning" href="cart.php?remove=<?= $row['id'] ?>">
+			      	<a class="btn btn-sm btn-warning" href="resources/cart.php?remove=<?= $row['id'] ?>">
 			      		<span class="glyphicon glyphicon-minus" title="Remove one item <?= $row['title'] ?>"></span>		
 			      	</a>
 
 			      	<!-- adiciona -->
-			      	<a class="btn btn-sm btn-success" href="cart.php?add=<?= $row['id'] ?>">
+			      	<a class="btn btn-sm btn-success" href="resources/cart.php?add=<?= $row['id'] ?>">
 			      		<span class="glyphicon glyphicon-plus" title="Add one more item <?= $row['title'] ?>"></span>
 			      	</a>
 
 			      	<!-- exclui todos -->
-			      	<a title="Remove all items <?= $row['title'] ?>" class="btn btn-sm btn-danger" href="cart.php?delete=<?= $row['id'] ?>">
+			      	<a title="Remove all items <?= $row['title'] ?>" class="btn btn-sm btn-danger" href="resources/cart.php?delete=<?= $row['id'] ?>">
 			      		<span class="glyphicon glyphicon-trash"></span>      			
 			      	</a>
 			      </td>                  
@@ -201,7 +201,7 @@ function get_products() {
             </h4>
             <p><?= substr($row['description'], 0, 90)  ?> ...</p>
 
-            <a class="btn btn-primary" href="cart?add=<?= $row['id'] ?>">Add to Cart</a>
+            <a class="btn btn-primary" href="resources/cart?add=<?= $row['id'] ?>">Add to Cart</a>
           </div>
         </div>
       </div>
