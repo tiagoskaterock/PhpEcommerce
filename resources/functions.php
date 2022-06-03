@@ -14,7 +14,7 @@ function admin_categories() {
 	    	   
 	    <td>
 	    	<form action="" method="post">	    		
-		      <button type="submit" class="btn btn-sm btn-danger" name="delete_category" value="<?= $id ?>">		      	
+		      <button type="submit" class="btn btn-sm btn-danger" name="delete_category" value="<?= $id ?>">
 		      	Delete
 		      </button>
 		    </form>
@@ -365,7 +365,7 @@ function get_products_in_category_page() {
 
 function info_message() {
 	?>
-	<?php if ($_SESSION['info_message'] != null): ?>
+	<?php if (isset($_SESSION['info_message']) && $_SESSION['info_message'] != null): ?>
     <div class="alert alert-info"><?= $_SESSION['info_message'] ?></div>    
 	<?php endif ?>
 	<?php
@@ -387,18 +387,21 @@ function get_total_products() {
 
 
 
-function getCategories() {
+function get_categories() {
 
-	$query = query("SELECT * FROM categories ORDER BY title");
+	$categorias = query("SELECT * FROM categories ORDER BY title");
 
-	confirm($query);
+	confirm($categorias);
 
-	while ($row = fetch_array($query)) { 
-		?>
-		<a href="category?id=<?= $row['id'] ?>" class="list-group-item"><?= $row['title'] ?></a> 
-		<?php
-		}
+	return $categorias;
 }
+
+
+
+
+
+
+
 
 
 
@@ -444,6 +447,36 @@ function login_user() {
       redirect('admin');
     }
   }
+}
+
+
+
+
+function add_product() {
+	if (isset($_POST['publish'])) {
+
+	  $title = escape_string($_POST['title']);
+	  $cat_id = escape_string($_POST['cat_id']);
+	  $price = escape_string($_POST['price']);
+	  $quantity = escape_string($_POST['quantity']);
+	  $description = escape_string($_POST['description']);
+	  $description_short = escape_string($_POST['description_short']);
+
+	  $image = escape_string($_FILES['image']['name']);
+	  $tmp = escape_string($_FILES['image']['tmp_name']);
+
+	  move_uploaded_file($tmp, '../uploads/products/' . date('Ymdhis') . $image);
+
+	  $image = 'uploads/products/' . date('Ymdhis') . $image;
+
+	 	$query = query("INSERT INTO 
+	 		products (title, cat_id, price, quantity, description_short, description, image)	
+	 		values ('$title', '$cat_id', '$price', '$quantity', '$description_short', '$description', '$image')");
+
+		confirm($query);
+		$_SESSION['info_message'] = 'Product created seccessfully';
+		header("Location: .?page=products");
+	} 
 }
 
 
@@ -544,6 +577,7 @@ function delete_user() {
 			unlink('../' . $row['image']);
 		}
 
+		// remover do banco
 		$query = query("DELETE FROM users WHERE id = $id");
 		confirm($query);
 		

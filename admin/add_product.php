@@ -13,22 +13,30 @@
         <div class="col-md-8">
 
           <div class="form-group">
-            <label for="product-title">Product Title </label>
-            <input type="text" name="product_title" class="form-control">
+            <label for="title">Product Title </label>
+            <input type="text" name="title" class="form-control"  
+            placeholder="Product name" required>
           </div>
 
 
           <div class="form-group">
-            <label for="product-title">Product Description</label>
-            <textarea name="product_description" id="" cols="30" rows="10" class="form-control"></textarea>
+            <label for="description_short">Short Description </label>
+            <input type="text" name="description_short" class="form-control"  
+            placeholder="Product short description" required>
+          </div>
+
+
+          <div class="form-group">
+            <label for="description">Full Description</label>
+            <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="Product full description" required></textarea>
           </div>
 
 
 
          <div class="form-group row">
             <div class="col-xs-3">
-              <label for="product-price">Product Price</label>
-              <input type="number" name="product_price" class="form-control" size="60">
+              <label for="price">Product Price</label>
+              <input type="number" name="price" class="form-control" size="60" required min="0" value="1">
             </div>
           </div>
 
@@ -41,18 +49,29 @@
 
 
          <div class="form-group">
-           <input type="submit" name="draft" class="btn btn-warning btn-lg" value="Draft">
+           <!--<input type="submit" name="draft" class="btn btn-warning btn-lg" value="Draft">-->
            <input type="submit" name="publish" class="btn btn-primary btn-lg" value="Publish">
          </div>
 
 
          <!-- Product Categories-->
-
          <div class="form-group">
-           <label for="product-title">Product Category</label>
-           <hr>
-           <select name="product_category" id="" class="form-control">
-            <option value="">Select Category</option>
+           <label for="cat_id">Product Category</label>
+           <select name="cat_id" class="form-control">
+
+            <?php 
+            
+              $categories = get_categories();
+
+              foreach ($categories as $cat) {
+                ?>
+                <option value="<?= $cat['id'] ?>">
+                  <?= $cat['title'] ?>
+                </option>
+                <?php
+              }      
+            
+            ?>            
 
           </select>
 
@@ -61,27 +80,25 @@
 
 
 
+         <hr>
 
-        <!-- Product Brands-->
+
         <div class="form-group">
-          <label for="product-title">Product Brand</label>
-          <select name="product_brand" id="" class="form-control">
-            <option value="">Select Brand</option>
-          </select>
+          <label for="quantity">Quantity</label>
+          <input type="number" name="quantity" class="form-control" min="0" value="1" required>
         </div>
 
 
-        <!-- Product Tags -->
-        <div class="form-group">
-          <label for="product-title">Product Keywords</label>
-          <hr>
-          <input type="text" name="product_tags" class="form-control">
-        </div>
+
+
+        <hr>
+
+
 
         <!-- Product Image -->
         <div class="form-group">
           <label for="product-title">Product Image</label>
-          <input type="file" name="file">
+          <input type="file" name="image" class="form-control" required>
         </div>
 
 
@@ -96,3 +113,11 @@
   </div> <!-- /.container-fluid -->
 
 </div> <!-- /#page-wrapper -->
+
+
+
+<?php 
+
+  add_product();      
+
+?>
