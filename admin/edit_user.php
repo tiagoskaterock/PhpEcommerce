@@ -72,7 +72,7 @@ while ($row = fetch_array($query)) {
 
 
             <div class="form-group">
-              <button class="btn btn-primary" type="submit" name="submit" value="submit">Save</button>            
+              <button class="btn btn-primary" type="submit" name="submit" value="submit">Update</button>            
             </div>
 
 

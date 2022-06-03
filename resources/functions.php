@@ -501,6 +501,7 @@ function update_product() {
 	  	// remover imagem antiga
 		  $query = query("SELECT image FROM products WHERE id = $id");
 			confirm($query);
+
 			while ($row = fetch_array($query)) {
 				unlink($row['image']);
 			}
@@ -575,31 +576,23 @@ function add_user() {
 
 
 function update_user() {
-	if (isset($_POST['price'])) {
+	if (isset($_POST['submit'])) {
+
 	  $name = escape_string($_POST['name']);
 	  $email = escape_string($_POST['email']);
 	  $password = escape_string($_POST['password']);
 	  $id = escape_string($_POST['id']);
 
-	  echo '<br>';
-	  print_r($_POST);
-	  echo '</br>';
-
-	  die();
-
-	  // remover imagem antiga
-	  $query = query("SELECT image FROM users WHERE id = $id");
-		confirm($query);
-		while ($row = fetch_array($query)) {
-			unlink('../' . $row['image']);
-		}
-
-
 	  // com imagem para atualizar
 	  if ($_FILES['image']['size'] > 0) {
-		  echo '<br>';
-		  print_r($_FILES);
-		  echo '</br>';
+
+		  // remover imagem antiga
+		  $query = query("SELECT image FROM users WHERE id = $id");
+			confirm($query);
+
+			while ($row = fetch_array($query)) {
+				unlink($row['image']);
+			}
 		  
 		  $image = escape_string($_FILES['image']['name']);
 		  $tmp = escape_string($_FILES['image']['tmp_name']);
@@ -647,8 +640,9 @@ function delete_user() {
 		// remover imagem antiga
 	  $query = query("SELECT image FROM users WHERE id = $id");
 		confirm($query);
+		
 		while ($row = fetch_array($query)) {
-			unlink('../' . $row['image']);
+			unlink($row['image']);
 		}
 
 		// remover do banco
