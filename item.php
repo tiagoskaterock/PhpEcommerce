@@ -35,7 +35,7 @@
   <div class="row">
 
     <div class="col-md-7">
-     <img class="img-responsive" src="<?= $image ?>" alt="Post Image">
+     <img class="img-responsive" src="iploads/<?= $image ?>" alt="Post Image">
 
    </div>
 

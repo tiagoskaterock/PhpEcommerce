@@ -87,7 +87,7 @@ while ($row = fetch_array($query)) {
 
             <!-- com imagem -->
             <?php else: ?>
-              <img class="admin-user-thumbnail user_image" src="../<?= $row['image'] ?>" alt="" height="150px">
+              <img class="admin-user-thumbnail user_image" src="<?= $row['image'] ?>" alt="" height="150px">
             <?php endif ?>           
           </div>
 

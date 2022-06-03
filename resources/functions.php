@@ -54,6 +54,7 @@ function cart() {
 			    ?>
 			    <tr>
 			      <td><?= $row['title'] ?></td>
+			      <td><img src="uploads/<?= $row['image'] ?>" alt="<?= $row['title'] ?>" height="50"></td>
 			      <td>$ <?= $row['price'] ?></td>
 			      <td><?= $value ?></td>
 			      <td>$ <?= $row['price'] * $value ?></td>
@@ -218,7 +219,7 @@ function get_products() {
 			<div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
         	<a href="item?id=<?= $row['id'] ?>">
-            <img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
+            <img src="uploads/<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
         	</a>
           <div class="caption">
             <h4 class="pull-right">$ <?= $row['price'] ?></h4>
@@ -314,7 +315,7 @@ function get_products_in_shop_page() {
     ?>
     <div class="col-md-3 col-sm-6 hero-feature">
       <div class="thumbnail">
-        <img src="<?= $image ?>" alt="Post Image">
+        <img src="uploads/<?= $image ?>" alt="Post Image">
         <div class="caption">
           <h3><?= $title ?></h3>
           <p><?= $description_short ?></p>
@@ -346,7 +347,7 @@ function get_products_in_category_page() {
     ?>
     <div class="col-md-3 col-sm-6 hero-feature">
       <div class="thumbnail">
-        <img src="<?= $image ?>" alt="Post Image">
+        <img src="uploads/<?= $image ?>" alt="Post Image">
         <div class="caption">
           <h3><?= $title ?></h3>
           <p><?= $description_short ?></p>
@@ -467,7 +468,7 @@ function add_product() {
 
 	  move_uploaded_file($tmp, '../uploads/products/' . date('Ymdhis') . $image);
 
-	  $image = 'uploads/products/' . date('Ymdhis') . $image;
+	  $image = '../uploads/products/' . date('Ymdhis') . $image;
 
 	 	$query = query("INSERT INTO 
 	 		products (title, cat_id, price, quantity, description_short, description, image)	
@@ -490,7 +491,7 @@ function add_user() {
 
 	  move_uploaded_file($tmp, '../uploads/users/' . date('Ymdhis') . $image);
 
-	  $image = 'uploads/users/' . date('Ymdhis') . $image;
+	  $image = '../uploads/users/' . date('Ymdhis') . $image;
 
 	 	$query = query("INSERT INTO 
 	 		users (name, email, password, image)	
@@ -532,7 +533,7 @@ function update_user() {
 
 		  move_uploaded_file($tmp, '../uploads/users/' . date('Ymdhis') . $image);	  	
 
-		  $image = 'uploads/users/' . date('Ymdhis') . $image;
+		  $image = '../uploads/users/' . date('Ymdhis') . $image;
 
 		 	$query = query("UPDATE users 
 		 		SET 
