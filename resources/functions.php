@@ -480,13 +480,19 @@ function update_user() {
 	  $password = escape_string($_POST['password']);
 	  $id = escape_string($_POST['id']);
 
+	  // remover imagem antiga
+	  $query = query("SELECT image FROM users WHERE id = $id");
+		confirm($query);
+		while ($row = fetch_array($query)) {
+			unlink('../' . $row['image']);
+		}
+
 
 	  // com imagem para atualizar
 	  if ($_FILES['image']['size'] > 0) {
 		  echo '<br>';
 		  print_r($_FILES);
 		  echo '</br>';
-
 		  
 		  $image = escape_string($_FILES['image']['name']);
 		  $tmp = escape_string($_FILES['image']['tmp_name']);
@@ -515,9 +521,7 @@ function update_user() {
 		 		password = '$password'
 		 		WHERE id = '$id'
 		 		");		
-	  }
-
-
+	  }  
 
 		confirm($query);
 		$_SESSION['info_message'] = 'Usuário atualizado com sucesso';
@@ -532,7 +536,14 @@ function delete_user() {
 	if (isset($_POST['delete_user'])) {
 
 		$id = $_POST['delete_user'];
-		
+
+		// remover imagem antiga
+	  $query = query("SELECT image FROM users WHERE id = $id");
+		confirm($query);
+		while ($row = fetch_array($query)) {
+			unlink('../' . $row['image']);
+		}
+
 		$query = query("DELETE FROM users WHERE id = $id");
 		confirm($query);
 		
