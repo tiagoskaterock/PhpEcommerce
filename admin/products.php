@@ -51,9 +51,9 @@
             </td>
             <td><?= $row['category'] ?></td>
             <td>$ <?= $row['price'] ?></td>
-            <td>$ <?= $row['quantity'] ?></td>
+            <td><?= $row['quantity'] ?></td>
             <td>
-              <a class="btn btn-sm btn-primary" href="?page=edit_product">Edit</a>
+              <a class="btn btn-sm btn-primary" href="?page=edit_product&id=<?= $row['id'] ?>">Edit</a>
             </td>
 
             <td>

@@ -481,6 +481,73 @@ function add_product() {
 }
 
 
+
+
+
+
+function update_product() {
+	if (isset($_POST['publish'])) {
+		$id = $_POST['id'];
+	  $title = escape_string($_POST['title']);
+	  $cat_id = escape_string($_POST['cat_id']);
+	  $price = escape_string($_POST['price']);
+	  $quantity = escape_string($_POST['quantity']);
+	  $description = escape_string($_POST['description']);
+	  $description_short = escape_string($_POST['description_short']);  
+
+	  // com imagem para atualizar
+	  if ($_FILES['image']['size'] > 0) {
+
+	  	// remover imagem antiga
+		  $query = query("SELECT image FROM products WHERE id = $id");
+			confirm($query);
+			while ($row = fetch_array($query)) {
+				unlink($row['image']);
+			}
+		  
+		  $image = escape_string($_FILES['image']['name']);
+		  $tmp = escape_string($_FILES['image']['tmp_name']);
+
+		  move_uploaded_file($tmp, '../uploads/products/' . date('Ymdhis') . $image);	  	
+
+		  $image = '../uploads/products/' . date('Ymdhis') . $image;
+
+		 	$query = query("UPDATE products SET 
+		 			title = '$title', 
+		 			cat_id = '$cat_id', 
+		 			price = '$price', 
+		 			quantity = '$quantity', 
+		 			description_short = '$description_short', 
+		 			description = '$description',
+		 			image = '$image'
+		 			WHERE 
+		 			id = '$id'");	
+	  }
+
+
+	  // manter a mesma imagem
+	  else {
+	  	$query = query("UPDATE products SET 
+		 			title = '$title', 
+		 			cat_id = '$cat_id', 
+		 			price = '$price', 
+		 			quantity = '$quantity', 
+		 			description_short = '$description_short', 
+		 			description = '$description'
+		 			WHERE 
+		 			id = '$id'");	
+	  }  
+
+		confirm($query);
+		$_SESSION['info_message'] = 'Product updated successfully';
+		header("Location: .?page=products");
+	} 
+}
+
+
+
+
+
 function add_user() {
 	if (isset($_POST['submit'])) {
 	  $name = escape_string($_POST['name']);
@@ -508,11 +575,17 @@ function add_user() {
 
 
 function update_user() {
-	if (isset($_POST['submit'])) {
+	if (isset($_POST['price'])) {
 	  $name = escape_string($_POST['name']);
 	  $email = escape_string($_POST['email']);
 	  $password = escape_string($_POST['password']);
 	  $id = escape_string($_POST['id']);
+
+	  echo '<br>';
+	  print_r($_POST);
+	  echo '</br>';
+
+	  die();
 
 	  // remover imagem antiga
 	  $query = query("SELECT image FROM users WHERE id = $id");
@@ -595,9 +668,22 @@ function delete_product() {
 	if (isset($_POST['delete_product'])) {
 
 		$id = $_POST['delete_product'];
-		
+
+		// remover imagem antiga
+	  $query = query("SELECT image FROM products WHERE id = $id");
+		confirm($query);
+
+		while ($row = fetch_array($query)) {
+			unlink($row['image']);
+		}
+
+		// remover do banco
 		$query = query("DELETE FROM products WHERE id = $id");
 		confirm($query);
+
+		while ($row = fetch_array($query)) {
+			unlink($row['image']);
+		}
 		
 		$_SESSION['info_message'] = 'Product deleted successfully';
 		header("Location: .?page=products");		

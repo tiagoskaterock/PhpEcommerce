@@ -1,98 +1,151 @@
-<div id="page-wrapper">
+<?php 
 
-  <div class="container-fluid">
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+}
+else {
+  header("Location: ?page=products");
+  die();
+}
 
-    <div class="col-md-12">
+if (!isset($id)) {
+  header("Location: ?page=products");
+  die();
+}
 
-      <div class="row">
-        <h1 class="page-header">Add Product</h1>
-      </div>
+$query = query("SELECT * FROM products WHERE id = '$id'");
 
-      <form action="" method="post" enctype="multipart/form-data">
+confirm($query);
 
-        <div class="col-md-8">
+if ($query->num_rows < 1) {
+  header("Location: ?page=products");
+}
 
-          <div class="form-group">
-            <label for="product-title">Product Title </label>
-            <input type="text" name="product_title" class="form-control">
-          </div>
+while ($row = fetch_array($query)) {  
 
+  ?>
+  <div id="page-wrapper">
 
-          <div class="form-group">
-            <label for="product-title">Product Description</label>
-            <textarea name="product_description" id="" cols="30" rows="10" class="form-control"></textarea>
-          </div>
+    <div class="container-fluid">
 
+      <div class="col-md-12">
 
+        <div class="row">
+          <h1 class="page-header">Edit Product</h1>
+        </div>        
 
-         <div class="form-group row">
-            <div class="col-xs-3">
-              <label for="product-price">Product Price</label>
-              <input type="number" name="product_price" class="form-control" size="60">
+        <form action="" method="post" enctype="multipart/form-data">
+
+          <input type="hidden" name="id" value="<?= $row['id'] ?>">
+
+          <div class="col-md-8">
+
+            <div class="form-group">
+              <label for="title">Product Title </label>
+              <input type="text" name="title" class="form-control"  
+              placeholder="Product name" value="<?= $row['title'] ?>" required>
             </div>
+
+
+            <div class="form-group">
+              <label for="description_short">Short Description </label>
+              <input type="text" name="description_short" class="form-control"  
+              placeholder="Product short description" value="<?= $row['description_short'] ?>" required>
+            </div>
+
+
+            <div class="form-group">
+              <label for="description">Full Description</label>
+              <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="Product full description" required><?= $row['description'] ?></textarea>
+            </div>
+
+
+
+           <div class="form-group row">
+              <div class="col-xs-3">
+                <label for="price">Product Price</label>
+                <input type="number" name="price" class="form-control" value="<?= $row['price'] ?>" size="60" required min="0" value="1" step="0.01">
+              </div>
+            </div>
+
+
+          </div><!--col-md-8-->
+
+
+          <!-- SIDEBAR-->
+          <aside id="admin_sidebar" class="col-md-4">
+
+
+           <div class="form-group">
+             <!--<input type="submit" name="draft" class="btn btn-warning btn-lg" value="Draft">-->
+             <input type="submit" name="publish" class="btn btn-primary btn-lg" value="Update">
+           </div>
+
+
+           <!-- Product Categories-->
+           <div class="form-group">
+             <label for="cat_id">Product Category</label>
+             <select name="cat_id" class="form-control">
+
+              <?php 
+              
+                $categories = get_categories();
+
+                foreach ($categories as $cat) {
+                  ?>
+                  <option value="<?= $cat['id'] ?>">
+                    <?= $cat['title'] ?>
+                  </option>
+                  <?php
+                }      
+              
+              ?>            
+
+            </select>
+
+
           </div>
 
 
-        </div><!--col-md-8-->
 
-
-        <!-- SIDEBAR-->
-        <aside id="admin_sidebar" class="col-md-4">
-
-
-         <div class="form-group">
-           <input type="submit" name="draft" class="btn btn-warning btn-lg" value="Draft">
-           <input type="submit" name="publish" class="btn btn-primary btn-lg" value="Publish">
-         </div>
-
-
-         <!-- Product Categories-->
-
-         <div class="form-group">
-           <label for="product-title">Product Category</label>
            <hr>
-           <select name="product_category" id="" class="form-control">
-            <option value="">Select Category</option>
-
-          </select>
 
 
-        </div>
-
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" class="form-control" min="0" value="<?= $row['quantity'] ?>" required>
+          </div>
 
 
 
-        <!-- Product Brands-->
-        <div class="form-group">
-          <label for="product-title">Product Brand</label>
-          <select name="product_brand" id="" class="form-control">
-            <option value="">Select Brand</option>
-          </select>
-        </div>
 
-
-        <!-- Product Tags -->
-        <div class="form-group">
-          <label for="product-title">Product Keywords</label>
           <hr>
-          <input type="text" name="product_tags" class="form-control">
-        </div>
-
-        <!-- Product Image -->
-        <div class="form-group">
-          <label for="product-title">Product Image</label>
-          <input type="file" name="file">
-        </div>
-
-
-        </aside><!--SIDEBAR-->
 
 
 
-      </form>
+          <!-- Product Image -->
+          <div class="form-group">
+            <label for="product-title">Product Image</label>
+            <input type="file" name="image" class="form-control">
+            <img src="<?= $row['image'] ?>" alt="" class="img-responsive">
+          </div>
 
-    </div> <!-- col-md-12 -->
 
-  </div> <!-- /.container-fluid -->
+          </aside><!--SIDEBAR-->
 
-</div> <!-- /#page-wrapper -->
+
+
+        </form>
+
+      </div> <!-- col-md-12 -->
+
+    </div> <!-- /.container-fluid -->
+
+  </div> <!-- /#page-wrapper -->
+
+<?php
+
+}
+
+update_product();
+

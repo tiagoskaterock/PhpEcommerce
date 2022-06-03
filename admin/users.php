@@ -52,7 +52,7 @@
                 <!-- com imagem -->
                 <?php else: ?>
                   <td>
-                    <img class="admin-user-thumbnail user_image" src="<?= $row['image'] ?>" alt="" height="20px">
+                    <img class="admin-user-thumbnail user_image" src="../<?= $row['image'] ?>" alt="" height="20px">
                   </td>
                 <?php endif ?>
 
