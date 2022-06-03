@@ -449,13 +449,19 @@ function login_user() {
 
 function add_user() {
 	if (isset($_POST['submit'])) {
-	  $name = $_POST['name'];
-	  $email = $_POST['email'];
-	  $password = $_POST['password'];
+	  $name = escape_string($_POST['name']);
+	  $email = escape_string($_POST['email']);
+	  $password = escape_string($_POST['password']);
+	  $image = escape_string($_FILES['image']['name']);
+	  $tmp = escape_string($_FILES['image']['tmp_name']);
+
+	  move_uploaded_file($tmp, '../uploads/users/' . date('Ymdhis') . $image);
+
+	  $image = 'uploads/users/' . date('Ymdhis') . $image;
 
 	 	$query = query("INSERT INTO 
-	 		users (name, email, password)	
-	 		values ('$name', '$email', '$password')");
+	 		users (name, email, password, image)	
+	 		values ('$name', '$email', '$password', '$image')");
 
 		confirm($query);
 		$_SESSION['info_message'] = 'Usuário criado com sucesso';

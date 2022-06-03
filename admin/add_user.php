@@ -14,12 +14,11 @@
 
 
 
-          <!-- User Image -->
-          <!--
+          <!-- User Image -->          
           <div class="form-group">
             <label for="imagem">User Image</label>
             <input type="file" name="image">
-          </div>-->
+          </div>
 
 
 

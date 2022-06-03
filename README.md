@@ -21,3 +21,9 @@ database in *ecommerce.sql*
 ![site](img/8.png)
 
 ![site](img/9.png)
+
+![site](img/10.png)
+
+![site](img/11.png)
+
+![site](img/12.png)
