@@ -472,6 +472,62 @@ function add_user() {
 
 
 
+
+function update_user() {
+	if (isset($_POST['submit'])) {
+	  $name = escape_string($_POST['name']);
+	  $email = escape_string($_POST['email']);
+	  $password = escape_string($_POST['password']);
+	  $id = escape_string($_POST['id']);
+
+
+	  // com imagem para atualizar
+	  if ($_FILES['image']['size'] > 0) {
+		  echo '<br>';
+		  print_r($_FILES);
+		  echo '</br>';
+
+		  
+		  $image = escape_string($_FILES['image']['name']);
+		  $tmp = escape_string($_FILES['image']['tmp_name']);
+
+		  move_uploaded_file($tmp, '../uploads/users/' . date('Ymdhis') . $image);	  	
+
+		  $image = 'uploads/users/' . date('Ymdhis') . $image;
+
+		 	$query = query("UPDATE users 
+		 		SET 
+		 		name = '$name', 
+		 		email = '$email', 
+		 		password = '$password', 
+		 		image = '$image'
+		 		WHERE id = '$id'
+		 		");	
+		 		
+	  }
+
+	  // manter a mesma imagem
+	  else {
+	  	$query = query("UPDATE users 
+		 		SET 
+		 		name = '$name', 
+		 		email = '$email', 
+		 		password = '$password'
+		 		WHERE id = '$id'
+		 		");		
+	  }
+
+
+
+		confirm($query);
+		$_SESSION['info_message'] = 'Usuário atualizado com sucesso';
+		header("Location: .?page=users");
+	} 
+}
+
+
+
+
 function delete_user() {
 	if (isset($_POST['delete_user'])) {
 

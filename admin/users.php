@@ -37,6 +37,7 @@
             confirm($query);
 
             while ($row = fetch_array($query)) {  
+              $id = $row['id'];
               ?>
               <tr>
 
@@ -61,7 +62,7 @@
                 <td><?= $row['email'] ?></td>
 
                 <td>
-                  <a href="javascript:void(0)" class="btn btn-sm btn-primary">
+                  <a href="?page=edit_user&id=<?= $id ?>" class="btn btn-sm btn-primary">
                     Edit
                   </a>                                               
                 </td>
