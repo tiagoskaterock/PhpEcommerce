@@ -93,7 +93,11 @@ while ($row = fetch_array($query)) {
 
                 foreach ($categories as $cat) {
                   ?>
-                  <option value="<?= $cat['id'] ?>">
+                  <option value="<?= $cat['id'] ?>" 
+                    <?php if ($row['cat_id'] == $cat['id']): ?>
+                      selected
+                    <?php endif ?>
+                    >
                     <?= $cat['title'] ?>
                   </option>
                   <?php
