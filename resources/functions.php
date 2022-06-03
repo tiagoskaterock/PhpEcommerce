@@ -447,6 +447,23 @@ function login_user() {
 }
 
 
+function add_user() {
+	if (isset($_POST['submit'])) {
+	  $name = $_POST['name'];
+	  $email = $_POST['email'];
+	  $password = $_POST['password'];
+
+	 	$query = query("INSERT INTO 
+	 		users (name, email, password)	
+	 		values ('$name', '$email', '$password')");
+
+		confirm($query);
+		$_SESSION['info_message'] = 'Usuário criado com sucesso';
+		header("Location: .?page=users");
+	} 
+}
+
+
 
 
 function delete_user() {
