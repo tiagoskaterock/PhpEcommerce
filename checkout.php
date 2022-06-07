@@ -45,7 +45,14 @@ include(TEMPLATE_FRONT . DS . "header.php");
 
       </table>
 
-      <input type="image" name="upload" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online">
+      <!-- shows paypal button only if there is an item on cart at least -->
+      <?php if (total_itens_cart() > 0): ?>
+        <input type="image" name="upload" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online">                
+      <?php endif ?>
+
+
+
+
 
     </form>
 

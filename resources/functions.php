@@ -112,6 +112,12 @@ function cart() {
 		<?php
 	}
 
+	?>
+
+	
+
+	<?php
+
 } // end function cart()  
 
 
