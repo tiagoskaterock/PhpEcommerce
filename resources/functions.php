@@ -29,6 +29,13 @@ function cart() {
 
 	$total_itens = 0;
 
+	// paypal variables declaration
+	$pp_item_name = 1;
+	$pp_item_number = 1;
+	$pp_amount = 1;
+	$pp_quantity = 1;
+	// end paypal variables declaration
+
 	// pegando o id correto
 	foreach ($_SESSION as $name => $value) {
 
@@ -76,7 +83,22 @@ function cart() {
 			      	</a>
 			      </td>                  
 			    </tr> 
+
+			    <!-- paypal stuff item <?= $pp_item_name ?> -->
+			    <input type="hidden" name="item_name_<?= $pp_item_name ?>" value="hat"> 
+					<input type="hidden" name="item_number_<?= $pp_item_number ?>" value="123"> 
+					<input type="hidden" name="amount_<?= $pp_amount ?>" value="15.00">
+					<input type="hidden" name="quantity_<?= $pp_quantity ?>" value="15.00">
+			    <!-- end paypal stuff item <?= $pp_item_name ?> -->
+
 			    <?php
+
+			    // incrementing paypal variables
+			    $pp_item_name++;
+					$pp_item_number++;
+					$pp_amount++;
+					$pp_quantity++;
+			    // end incrementing paypal variables
 
 			  } // end while
 
