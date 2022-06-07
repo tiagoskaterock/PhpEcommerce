@@ -30,10 +30,7 @@ function cart() {
 	$total_itens = 0;
 
 	// paypal variables declaration
-	$pp_item_name = 1;
-	$pp_item_number = 1;
-	$pp_amount = 1;
-	$pp_quantity = 1;
+	$item_counter = 1;
 	// end paypal variables declaration
 
 	// pegando o id correto
@@ -85,19 +82,16 @@ function cart() {
 			    </tr> 
 
 			    <!-- paypal stuff item <?= $pp_item_name ?> -->
-			    <input type="hidden" name="item_name_<?= $pp_item_name ?>" value="hat"> 
-					<input type="hidden" name="item_number_<?= $pp_item_number ?>" value="123"> 
-					<input type="hidden" name="amount_<?= $pp_amount ?>" value="15.00">
-					<input type="hidden" name="quantity_<?= $pp_quantity ?>" value="15.00">
+			    <input type="hidden" name="item_name_<?= $item_counter ?>" value="<?= $row['title'] ?>"> 
+					<input type="hidden" name="item_number_<?= $item_counter ?>" value="<?= $row['id'] ?>"> 
+					<input type="hidden" name="amount_<?= $item_counter ?>" value="<?= $row['price'] ?>">
+					<input type="hidden" name="quantity_<?= $item_counter ?>" value="<?= $value ?>">
 			    <!-- end paypal stuff item <?= $pp_item_name ?> -->
 
 			    <?php
 
 			    // incrementing paypal variables
-			    $pp_item_name++;
-					$pp_item_number++;
-					$pp_amount++;
-					$pp_quantity++;
+			    $item_counter++;
 			    // end incrementing paypal variables
 
 			  } // end while
