@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 07-Jun-2022 às 17:41
+-- Tempo de geração: 07-Jun-2022 às 23:28
 -- Versão do servidor: 5.7.38-0ubuntu0.18.04.1
 -- versão do PHP: 7.4.29
 
@@ -65,7 +65,26 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `amount`, `transaction`, `status`, `currency`) VALUES
-(1, 7.98, '7J483592N9885135P', 'Completed', 'BRL');
+(1, 7.98, '7J483592N9885135P', 'Completed', 'BRL'),
+(2, 7.98, '7J483592N9885135P', 'Completed', 'BRL'),
+(3, 2, '3GU54064KG400531M', 'Completed', 'BRL'),
+(4, 2, '3GU54064KG400531M', 'Completed', 'BRL'),
+(5, 2, '3GU54064KG400531M', 'Completed', 'BRL'),
+(6, 2, '3GU54064KG400531M', 'Completed', 'BRL'),
+(7, 2, '3GU54064KG400531M', 'Completed', 'BRL'),
+(8, 15, '0YX203763G270393K', 'Completed', 'BRL'),
+(9, 15, '0YX203763G270393K', 'Completed', 'BRL'),
+(10, 15, '0YX203763G270393K', 'Completed', 'BRL'),
+(11, 15, '0YX203763G270393K', 'Completed', 'BRL'),
+(12, 15, '0YX203763G270393K', 'Completed', 'BRL'),
+(13, 15, '0YX203763G270393K', 'Completed', 'BRL'),
+(14, 5, '3AG51772V4821314E', 'Completed', 'BRL'),
+(15, 5, '3AG51772V4821314E', 'Completed', 'BRL'),
+(16, 5, '3AG51772V4821314E', 'Completed', 'BRL'),
+(17, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
+(18, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
+(19, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
+(20, 31.9, '9DX216414G453822K', 'Completed', 'BRL');
 
 -- --------------------------------------------------------
 
@@ -97,6 +116,31 @@ INSERT INTO `products` (`id`, `title`, `cat_id`, `price`, `quantity`, `descripti
 (37, 'Beef - Kindney, Whole', 10, 6, 34, 'Intertrochanteric fracture of femur', 'Intertrochanteric fracture of femur', '../uploads/products/202206070519027.jpeg'),
 (40, 'Pork - Butt, Boneless', 15, 3, 34, 'Other peripheral vertigo, right ear', 'Other peripheral vertigo, right ear', '../uploads/products/202206070519328.png'),
 (42, 'Bread - Multigrain Oval', 17, 2.89, 45, 'Machine gun discharge, undetermined intent, init encntr', 'Machine gun discharge, undetermined intent, initial encounter', '../uploads/products/202206070518394.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `reports`
+--
+
+CREATE TABLE `reports` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_price` float NOT NULL,
+  `product_quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `reports`
+--
+
+INSERT INTO `reports` (`id`, `product_id`, `product_price`, `product_quantity`) VALUES
+(1, 20, 5, 2),
+(2, 31, 2, 1),
+(3, 35, 19.9, 1),
+(4, 20, 5, 2),
+(5, 31, 2, 1),
+(6, 35, 19.9, 1);
 
 -- --------------------------------------------------------
 
@@ -239,6 +283,13 @@ ALTER TABLE `products`
   ADD KEY `fk_cat_product` (`cat_id`);
 
 --
+-- Índices para tabela `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_product_report` (`product_id`);
+
+--
 -- Índices para tabela `users`
 --
 ALTER TABLE `users`
@@ -258,13 +309,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de tabela `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT de tabela `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `users`
@@ -281,6 +338,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `fk_cat_product` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `fk_product_report` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

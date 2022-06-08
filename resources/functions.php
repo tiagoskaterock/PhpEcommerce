@@ -156,11 +156,13 @@ function report() {
 
 			  while($row = fetch_array($query)) {
 
-			  	$total_itens++;
+			  	$product_price = $row['price'];
+			  	
+			  	$insert_report = query("INSERT INTO 
+			  		reports (product_id, product_price, product_quantity) 
+			  		VALUES ('$id', '$product_price', '$value')");
 
-			    // incrementing paypal variables
-			    $item_counter++;
-			    // end incrementing paypal variables
+			  	confirm($insert_report);			  	
 
 			  } // end while
 

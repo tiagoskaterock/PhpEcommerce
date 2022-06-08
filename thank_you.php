@@ -27,7 +27,7 @@ confirm($query);
 
 report();
 
-session_destroy();
+// session_destroy();
 
 
 ?>
