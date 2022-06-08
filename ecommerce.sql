@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 07-Jun-2022 às 23:55
+-- Tempo de geração: 08-Jun-2022 às 00:10
 -- Versão do servidor: 5.7.38-0ubuntu0.18.04.1
 -- versão do PHP: 7.4.29
 
@@ -98,7 +98,9 @@ INSERT INTO `orders` (`id`, `amount`, `transaction`, `status`, `currency`) VALUE
 (31, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
 (32, 5, '7FA74384AG5244117', 'Completed', 'BRL'),
 (33, 5, '7FA74384AG5244117', 'Completed', 'BRL'),
-(34, 5, '7FA74384AG5244117', 'Completed', 'BRL');
+(34, 5, '7FA74384AG5244117', 'Completed', 'BRL'),
+(35, 5, '7FA74384AG5244117', 'Completed', 'BRL'),
+(36, 6.99, '1YP59580HH777421E', 'Completed', 'BRL');
 
 -- --------------------------------------------------------
 
@@ -140,6 +142,7 @@ INSERT INTO `products` (`id`, `title`, `cat_id`, `price`, `quantity`, `descripti
 CREATE TABLE `reports` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
+  `product_title` varchar(255) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
   `product_price` float NOT NULL,
   `product_quantity` int(11) NOT NULL
@@ -149,20 +152,23 @@ CREATE TABLE `reports` (
 -- Extraindo dados da tabela `reports`
 --
 
-INSERT INTO `reports` (`id`, `product_id`, `order_id`, `product_price`, `product_quantity`) VALUES
-(1, 20, NULL, 5, 2),
-(2, 31, NULL, 2, 1),
-(3, 35, NULL, 19.9, 1),
-(4, 20, NULL, 5, 2),
-(5, 31, NULL, 2, 1),
-(6, 35, NULL, 19.9, 1),
-(7, 20, NULL, 5, 2),
-(8, 31, NULL, 2, 1),
-(9, 35, NULL, 19.9, 1),
-(10, 34, NULL, 1.99, 1),
-(11, 20, 32, 5, 1),
-(12, 20, 33, 5, 1),
-(13, 20, 34, 5, 1);
+INSERT INTO `reports` (`id`, `product_id`, `product_title`, `order_id`, `product_price`, `product_quantity`) VALUES
+(1, 20, NULL, NULL, 5, 2),
+(2, 31, NULL, NULL, 2, 1),
+(3, 35, NULL, NULL, 19.9, 1),
+(4, 20, NULL, NULL, 5, 2),
+(5, 31, NULL, NULL, 2, 1),
+(6, 35, NULL, NULL, 19.9, 1),
+(7, 20, NULL, NULL, 5, 2),
+(8, 31, NULL, NULL, 2, 1),
+(9, 35, NULL, NULL, 19.9, 1),
+(10, 34, NULL, NULL, 1.99, 1),
+(11, 20, NULL, 32, 5, 1),
+(12, 20, NULL, 33, 5, 1),
+(13, 20, NULL, 34, 5, 1),
+(14, 20, 'Nantucket Pine Orangebanana', 35, 5, 1),
+(15, 20, 'Nantucket Pine Orangebanana', 36, 5, 1),
+(16, 34, 'Sprouts - Alfalfa', 36, 1.99, 1);
 
 -- --------------------------------------------------------
 
@@ -332,7 +338,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de tabela `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de tabela `products`
@@ -344,7 +350,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de tabela `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `users`

@@ -188,10 +188,11 @@ function report() {
 			  while($row = fetch_array($query)) {
 
 			  	$product_price = $row['price'];
+			  	$product_title = $row['title'];
 			  	
 			  	$insert_report = query("INSERT INTO 
-			  		reports (product_id, order_id, product_price, product_quantity) 
-			  		VALUES ('$id', '$last_id', '$product_price', '$value')");
+			  		reports (product_id, order_id, product_price, product_quantity, product_title) 
+			  		VALUES ('$id', '$last_id', '$product_price', '$value', '$product_title')");
 
 			  	confirm($insert_report);	
 
