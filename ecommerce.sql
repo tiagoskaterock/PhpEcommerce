@@ -1,3 +1,9 @@
+CREATE DATABASE ecommerce;
+
+USE ecommerce;
+
+--
+
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/

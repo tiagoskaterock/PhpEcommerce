@@ -143,6 +143,14 @@ function get_all_orders() {
 
 
 
+function get_all_products() {
+	$products = query("SELECT * FROM products");
+	confirm($products);
+	return $products;
+}
+
+
+
 
 function get_all_reports() {
 	$reports = query("SELECT * FROM reports ORDER BY id DESC");
