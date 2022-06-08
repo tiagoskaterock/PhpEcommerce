@@ -29,12 +29,12 @@
                 <i class="fa fa-shopping-cart fa-5x"></i>
               </div>
               <div class="col-xs-9 text-right">
-                <div class="huge">###</div>
-                <div>New Orders!</div>
+                <div class="huge"><?= get_total_orders() ?></div>
+                <div>Orders!</div>
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="?page=orders">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -60,7 +60,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="?page=products">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -88,7 +88,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="?page=categories">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

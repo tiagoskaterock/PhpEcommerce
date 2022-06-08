@@ -127,11 +127,8 @@ function cart() {
 
 
 function last_id() {
-
 	global $connection;
-
 	return mysqli_insert_id($connection);
-
 }
 
 
@@ -142,6 +139,17 @@ function get_all_orders() {
 	$orders = query("SELECT * FROM orders ORDER BY id DESC");
 	confirm($orders);
 	return $orders;
+}
+
+
+
+function get_total_orders() {
+	$orders = query("SELECT COUNT(id) as total FROM orders ORDER BY id DESC");
+	confirm($orders);
+	while($row = fetch_array($orders)) {
+		$total = $row['total'];
+	}
+	return $total;
 }
 
 
