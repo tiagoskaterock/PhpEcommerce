@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 07-Jun-2022 às 23:28
+-- Tempo de geração: 07-Jun-2022 às 23:55
 -- Versão do servidor: 5.7.38-0ubuntu0.18.04.1
 -- versão do PHP: 7.4.29
 
@@ -84,7 +84,21 @@ INSERT INTO `orders` (`id`, `amount`, `transaction`, `status`, `currency`) VALUE
 (17, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
 (18, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
 (19, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
-(20, 31.9, '9DX216414G453822K', 'Completed', 'BRL');
+(20, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
+(21, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
+(22, 31.9, '9DX216414G453822K', 'Completed', 'BRL'),
+(23, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(24, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(25, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(26, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(27, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(28, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(29, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(30, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(31, 1.99, '6HH068130U278811C', 'Completed', 'BRL'),
+(32, 5, '7FA74384AG5244117', 'Completed', 'BRL'),
+(33, 5, '7FA74384AG5244117', 'Completed', 'BRL'),
+(34, 5, '7FA74384AG5244117', 'Completed', 'BRL');
 
 -- --------------------------------------------------------
 
@@ -126,6 +140,7 @@ INSERT INTO `products` (`id`, `title`, `cat_id`, `price`, `quantity`, `descripti
 CREATE TABLE `reports` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
   `product_price` float NOT NULL,
   `product_quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -134,13 +149,20 @@ CREATE TABLE `reports` (
 -- Extraindo dados da tabela `reports`
 --
 
-INSERT INTO `reports` (`id`, `product_id`, `product_price`, `product_quantity`) VALUES
-(1, 20, 5, 2),
-(2, 31, 2, 1),
-(3, 35, 19.9, 1),
-(4, 20, 5, 2),
-(5, 31, 2, 1),
-(6, 35, 19.9, 1);
+INSERT INTO `reports` (`id`, `product_id`, `order_id`, `product_price`, `product_quantity`) VALUES
+(1, 20, NULL, 5, 2),
+(2, 31, NULL, 2, 1),
+(3, 35, NULL, 19.9, 1),
+(4, 20, NULL, 5, 2),
+(5, 31, NULL, 2, 1),
+(6, 35, NULL, 19.9, 1),
+(7, 20, NULL, 5, 2),
+(8, 31, NULL, 2, 1),
+(9, 35, NULL, 19.9, 1),
+(10, 34, NULL, 1.99, 1),
+(11, 20, 32, 5, 1),
+(12, 20, 33, 5, 1),
+(13, 20, 34, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -287,7 +309,8 @@ ALTER TABLE `products`
 --
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_product_report` (`product_id`);
+  ADD KEY `fk_product_report` (`product_id`),
+  ADD KEY `fk_order_report` (`order_id`);
 
 --
 -- Índices para tabela `users`
@@ -309,7 +332,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de tabela `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `products`
@@ -321,7 +344,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de tabela `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `users`
@@ -343,6 +366,7 @@ ALTER TABLE `products`
 -- Limitadores para a tabela `reports`
 --
 ALTER TABLE `reports`
+  ADD CONSTRAINT `fk_order_report` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_product_report` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

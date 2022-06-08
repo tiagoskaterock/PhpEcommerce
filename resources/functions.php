@@ -126,9 +126,40 @@ function cart() {
 
 
 
+function last_id() {
+
+	global $connection;
+
+	return mysqli_insert_id($connection);
+
+}
+
+
 
 
 function report() {
+
+	// sem transação não mostra a página
+	if (!isset($_GET['amt']) || !isset($_GET['cc']) || !isset($_GET['tx']) || !isset($_GET['st'])) {
+		header("Location: .");	
+		die();
+	}
+
+	$amount = $_GET['amt'];
+	$currency = $_GET['cc'];
+	$transaction = $_GET['tx'];
+	$status = $_GET['st'];
+
+	$send_order = query("INSERT INTO 
+							orders (amount, transaction, status, currency) 
+						VALUES 
+							('$amount', '$transaction', '$status', '$currency')");
+
+	confirm($send_order);
+
+	$last_id = last_id();
+
+	echo $last_id;
 
 	$total_itens = 0;
 
@@ -159,10 +190,12 @@ function report() {
 			  	$product_price = $row['price'];
 			  	
 			  	$insert_report = query("INSERT INTO 
-			  		reports (product_id, product_price, product_quantity) 
-			  		VALUES ('$id', '$product_price', '$value')");
+			  		reports (product_id, order_id, product_price, product_quantity) 
+			  		VALUES ('$id', '$last_id', '$product_price', '$value')");
 
-			  	confirm($insert_report);			  	
+			  	confirm($insert_report);	
+
+			  	echo $insert_report;		  	
 
 			  } // end while
 
@@ -171,6 +204,9 @@ function report() {
 		} // if ($value > 0) 
 
 	} // end foreach()	
+
+	// don't forget to reactivate to deploy on production
+	// session_destroy();
 
 } // end function report()  
 
