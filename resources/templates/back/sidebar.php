@@ -13,7 +13,7 @@
     <li class="<?php if (TITULO == 'Products'): ?>
       active
     <?php endif ?>">
-      <a href="?page=products"><i class="fa fa-fw fa-bar-chart-o"></i> View Products</a>
+      <a href="?page=products"><i class="fa-brands fa-product-hunt" aria-hidden="true"></i> View Products</a>
     </li>
 
 
@@ -35,6 +35,14 @@
       active
     <?php endif ?>">
         <a href="?page=orders"><i class="fa fa-fw fa-wrench"></i>Orders</a>
+    </li>
+
+
+
+    <li class="<?php if (TITULO == 'Carousel'): ?>
+      active
+    <?php endif ?>">
+        <a href="?page=carousel"><i class="fa-solid fa-images"></i>Carousel</a>
     </li>
 
 

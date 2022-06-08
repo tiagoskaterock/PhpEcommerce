@@ -152,6 +152,15 @@ function get_all_products() {
 
 
 
+function get_all_slides() {
+	$slides = query("SELECT * FROM carousel");
+	confirm($slides);
+	return $slides;
+}
+
+
+
+
 function get_all_reports() {
 	$reports = query("SELECT * FROM reports ORDER BY id DESC");
 	confirm($reports);
@@ -622,6 +631,43 @@ function login_user() {
       redirect('admin');
     }
   }
+}
+
+
+
+
+
+function add_slide() {
+	if (isset($_POST['add_slide'])) {
+
+		print_r($_FILES);
+
+		$title = escape_string($_POST['title']);		
+
+		$image = escape_string($_FILES['image']['name']);
+		$tmp = escape_string($_FILES['image']['tmp_name']);
+
+		move_uploaded_file($tmp, '../uploads/carousel/' . date('Ymdhis') . $image);
+
+		if (move_uploaded_file($tmp, '../uploads/carousel/' . date('Ymdhis') . $image)) {
+			echo 'foi';
+		}
+		else {
+			echo 'deu bosta';
+		}
+
+		die();
+
+		$image = '../uploads/carousel/' . date('Ymdhis') . $image;
+
+			$query = query("INSERT INTO 
+				carousel (title, cat_id, price, quantity, description_short, description, image)	
+				values ('$title', '$cat_id', '$price', '$quantity', '$description_short', '$description', '$image')");
+
+		confirm($query);
+		$_SESSION['info_message'] = 'Product created seccessfully';
+		header("Location: .?page=carousel");
+	} 
 }
 
 
