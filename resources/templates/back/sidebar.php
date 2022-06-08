@@ -39,10 +39,19 @@
 
 
 
+
+    <li class="<?php if (TITULO == 'Reports'): ?>
+      active
+    <?php endif ?>">
+        <a href="?page=reports"><i class="fa fa-fw fa-bar-chart"></i>Reports</a>
+    </li>
+
+
+
     <li class="<?php if (TITULO == 'Users'): ?>
       active
     <?php endif ?>">
-      <a href="?page=users"><i class="fa fa-fw fa-wrench"></i>Users</a>
+      <a href="?page=users"><i class="fa fa-fw fa-users"></i>Users</a>
     </li>
 
 

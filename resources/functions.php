@@ -143,6 +143,15 @@ function get_all_orders() {
 
 
 
+
+function get_all_reports() {
+	$reports = query("SELECT * FROM reports ORDER BY id DESC");
+	confirm($reports);
+	return $reports;	
+}
+
+
+
 function get_total_orders() {
 	$orders = query("SELECT COUNT(id) as total FROM orders ORDER BY id DESC");
 	confirm($orders);
@@ -407,6 +416,21 @@ function delete_order() {
 		
 		$_SESSION['info_message'] = 'Orders deleted successfully';
 		header("Location: .?page=orders");
+  
+	}
+}
+
+
+
+function delete_report() {
+	if (isset($_POST['delete'])) {
+  $id = $_POST['delete'];
+
+  $query = query("DELETE FROM reports WHERE id = $id");
+		confirm($query);
+		
+		$_SESSION['info_message'] = 'Report deleted successfully';
+		header("Location: .?page=reports");
   
 	}
 }

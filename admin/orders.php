@@ -54,8 +54,6 @@
 
 </div><!-- end page-wrapper -->
 
-
-
 <?php 
 
 delete_order();
