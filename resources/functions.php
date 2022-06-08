@@ -154,7 +154,7 @@ function get_total_orders() {
 
 
 
-function report() {
+function process_transaction() {
 
 	// sem transação não mostra a página
 	if (!isset($_GET['amt']) || !isset($_GET['cc']) || !isset($_GET['tx']) || !isset($_GET['st'])) {
@@ -391,6 +391,23 @@ function delete_category() {
 		$_SESSION['info_message'] = 'Categoria excluída com sucesso';
 		header("Location: .?page=categories");
 		
+	}
+}
+
+
+
+
+
+function delete_order() {
+	if (isset($_POST['delete'])) {
+  $id = $_POST['delete'];
+
+  $query = query("DELETE FROM orders WHERE id = $id");
+		confirm($query);
+		
+		$_SESSION['info_message'] = 'Orders deleted successfully';
+		header("Location: .?page=orders");
+  
 	}
 }
 
