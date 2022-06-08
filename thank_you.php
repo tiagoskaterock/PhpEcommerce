@@ -25,6 +25,8 @@ $query = query("INSERT INTO
 
 confirm($query);
 
+report();
+
 session_destroy();
 
 

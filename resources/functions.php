@@ -114,7 +114,7 @@ function cart() {
 
 	?>
 
-	
+
 
 	<?php
 
@@ -122,6 +122,55 @@ function cart() {
 
 
 
+
+
+
+
+
+
+function report() {
+
+	$total_itens = 0;
+
+	// paypal variables declaration
+	$item_counter = 1;
+	// end paypal variables declaration
+
+	// pegando o id correto
+	foreach ($_SESSION as $name => $value) {
+
+		if ($value > 0) {
+
+			// quantidade em sessão
+			$quantity = $name;
+
+			// descobre o id descontando pelo tamanho da string
+			$lenght = strlen($name);
+			
+			$id = substr($name, 8, $lenght);
+
+			if (substr($name, 0, 8) == 'product_') {
+				
+			  $query = query("SELECT * FROM products WHERE id = $id");
+			  confirm($query);
+
+			  while($row = fetch_array($query)) {
+
+			  	$total_itens++;
+
+			    // incrementing paypal variables
+			    $item_counter++;
+			    // end incrementing paypal variables
+
+			  } // end while
+
+			} // end if subtr()
+
+		} // if ($value > 0) 
+
+	} // end foreach()	
+
+} // end function report()  
 
 
 
