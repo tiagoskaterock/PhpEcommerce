@@ -137,6 +137,15 @@ function last_id() {
 
 
 
+
+function get_all_orders() {
+	$orders = query("SELECT * FROM orders ORDER BY id DESC");
+	confirm($orders);
+	return $orders;
+}
+
+
+
 function report() {
 
 	// sem transação não mostra a página
@@ -158,8 +167,6 @@ function report() {
 	confirm($send_order);
 
 	$last_id = last_id();
-
-	echo $last_id;
 
 	$total_itens = 0;
 
@@ -207,7 +214,7 @@ function report() {
 	} // end foreach()	
 
 	// don't forget to reactivate to deploy on production
-	// session_destroy();
+	session_destroy();
 
 } // end function report()  
 
