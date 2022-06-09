@@ -152,6 +152,15 @@ function get_all_products() {
 
 
 
+function get_all_alides_from_main_carousel() {
+	$products = query("SELECT * FROM carousel");
+	confirm($products);
+	return $products;
+}
+
+
+
+
 function get_all_slides() {
 	$slides = query("SELECT * FROM carousel");
 	confirm($slides);

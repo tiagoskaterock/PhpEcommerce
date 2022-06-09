@@ -1,5 +1,5 @@
 <?php 
-    $products = get_all_products();
+    $products = get_all_alides_from_main_carousel();
 
     // mostrar a classe active apenas uma vez
     $counter = 0;
