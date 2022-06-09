@@ -1,4 +1,10 @@
-# Ecommerce project using PHP
+# Ecommerce project using PHP, BootStrap and SQL
+
+Feel free to uset it and make it better
+
+I made id using PHP 7.4 on Ubuntu 18.04
+
+Maybe it needs some changes to work on another OS
 
 database in *ecommerce.sql*
 
