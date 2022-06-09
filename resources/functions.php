@@ -645,27 +645,24 @@ function add_slide() {
 		$title = escape_string($_POST['title']);		
 
 		$image = escape_string($_FILES['image']['name']);
-		$tmp = escape_string($_FILES['image']['tmp_name']);
-
-		move_uploaded_file($tmp, '../uploads/carousel/' . date('Ymdhis') . $image);
+		$tmp = escape_string($_FILES['image']['tmp_name']);		
 
 		if (move_uploaded_file($tmp, '../uploads/carousel/' . date('Ymdhis') . $image)) {
-			echo 'foi';
 		}
+		// erro ao subir o arquivo
 		else {
-			echo 'deu bosta';
+			echo 'Nao foi possível fazer o upload da imagem para o carrosel de slides';
+			die();			
 		}
-
-		die();
 
 		$image = '../uploads/carousel/' . date('Ymdhis') . $image;
 
 			$query = query("INSERT INTO 
-				carousel (title, cat_id, price, quantity, description_short, description, image)	
-				values ('$title', '$cat_id', '$price', '$quantity', '$description_short', '$description', '$image')");
+				carousel (title, image)
+				values ('$title', '$image')");
 
 		confirm($query);
-		$_SESSION['info_message'] = 'Product created seccessfully';
+		$_SESSION['info_message'] = 'Slide added successfully to the main';
 		header("Location: .?page=carousel");
 	} 
 }
@@ -900,8 +897,34 @@ function delete_product() {
 		}
 		
 		$_SESSION['info_message'] = 'Product deleted successfully';
-		header("Location: .?page=products");		
-	
+		header("Location: .?page=products");			
+	}
+}
+
+
+
+
+
+
+function delete_slide() {
+	if (isset($_POST['delete'])) {
+
+		$id = $_POST['delete'];
+
+		// remover imagem antiga
+	  $query = query("SELECT image FROM carousel WHERE id = $id");
+		confirm($query);
+
+		while ($row = fetch_array($query)) {
+			unlink($row['image']);
+		}
+
+		// remover do banco
+		$query = query("DELETE FROM carousel WHERE id = $id");
+		confirm($query);
+		
+		$_SESSION['info_message'] = 'Slide deleted successfully';
+		header("Location: .?page=carousel");			
 	}
 }
 
