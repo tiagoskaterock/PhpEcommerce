@@ -565,6 +565,32 @@ function get_total_products_in_stock() {
 
 
 
+function get_total_products() {
+	$query = query("SELECT COUNT(id) as total FROM products");
+	confirm($query);
+
+	while($row = fetch_array($query)) {
+		$total = $row['total'];
+	}
+
+	return $total;
+}
+
+
+
+
+function header_front() {
+	include(TEMPLATE_FRONT . DS . "header.php");
+}
+
+
+
+function footer_front() {
+	include(TEMPLATE_FRONT . DS . "footer.php");
+}
+
+
+
 
 
 

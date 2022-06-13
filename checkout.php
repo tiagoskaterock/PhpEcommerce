@@ -1,9 +1,4 @@
-<?php 
-
-require_once("resources/config.php");
-include(TEMPLATE_FRONT . DS . "header.php");
-
-?>
+<?php require_once("resources/templates/front/header.php") ?>
 
 <div class="container">
 
@@ -92,4 +87,4 @@ include(TEMPLATE_FRONT . DS . "header.php");
 
 <hr>
 
-<?php include(TEMPLATE_FRONT . DS . "footer.php") ?>
+<?php footer_front() ?>

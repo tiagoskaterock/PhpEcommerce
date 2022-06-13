@@ -1,6 +1,4 @@
-<?php require_once("resources/config.php"); ?>
-
-<?php include(TEMPLATE_FRONT .  "/header.php");?>
+<?php require_once("resources/templates/front/header.php") ?>
 
 <div class="container">
   <div class="row">
@@ -80,5 +78,5 @@
 
 </div>
 
-<?php include(TEMPLATE_FRONT .  "/footer.php");?>
+<?php footer_front() ?>
 
