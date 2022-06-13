@@ -552,8 +552,8 @@ function show_pagination() {
 
 
 
-function get_total_products() {
-	$query = query("SELECT COUNT(id) as total FROM products");
+function get_total_products_in_stock() {
+	$query = query("SELECT COUNT(id) as total FROM products WHERE quantity > 0");
 	confirm($query);
 
 	while($row = fetch_array($query)) {

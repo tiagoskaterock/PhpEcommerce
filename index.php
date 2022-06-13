@@ -21,13 +21,13 @@
     $page_1 = ($page * $per_page) - $per_page;
   }      
 
-  $count = get_total_products();
+  $count = get_total_products_in_stock();
 
   $count = ceil($count / $per_page);
   // end pagination  
 
-  // query with pagination
-  $query = query("SELECT * FROM products ORDER BY id DESC LIMIT $per_page OFFSET $page_1");
+  // query with pagination with products in stock only
+  $query = query("SELECT * FROM products WHERE quantity > 0 ORDER BY id DESC LIMIT $per_page OFFSET $page_1");
 
   confirm($query);
 
@@ -76,8 +76,9 @@
                     <img src="uploads/<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
                   </a>
                   <div class="caption">
-                    <h4 class="pull-right">$ <?= $row['price'] ?></h4>
                     <h4><a href="item?id=<?= $row['id'] ?>"><?= $row['title'] ?></a>
+                    <h4>$ <?= $row['price'] ?></h4>
+                    <h5>In stock: <?= $row['quantity'] ?></h5>
                     </h4>
                     <p><?= substr($row['description'], 0, 90)  ?> ...</p>
 

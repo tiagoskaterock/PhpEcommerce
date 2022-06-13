@@ -9,16 +9,17 @@
 	  // previous button
 	  if ($page == 1) {
 	  	?>
-	  	<li class="disabled"><a href="javascript:void(0)">Previous</a></li>
+	  	<li class="disabled"><a href="javascript:void(0)">Back</a></li>
 	  	<?php
 	  }
 	  else {
 	  	?>
-	  	<li><a href="index?page=<?= $page - 1 ?>">Previous</a></li>  
+	  	<li><a href="index?page=<?= $page - 1 ?>">Back</a></li>  
 	  	<?php
 	  }
 	  // end previous button
 
+	  // page buttons
 	  for ($i=1; $i <= $count ; $i++) { 
 	    if ($page == $i) {
 	      ?>
@@ -31,6 +32,7 @@
 	      <?php
 	    }
 	  }
+	  // end page buttons
 
 	  // next button
 	  if ($page == $count) {
