@@ -565,6 +565,9 @@ function get_total_products() {
 
 
 
+
+
+
 function get_categories() {
 
 	$categorias = query("SELECT * FROM categories ORDER BY title");

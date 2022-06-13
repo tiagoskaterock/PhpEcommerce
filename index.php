@@ -5,7 +5,7 @@
 <?php
 
   // Pagination
-  $per_page = 4;
+  $per_page = 2;
 
   if (isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -24,7 +24,7 @@
   $count = get_total_products();
 
   $count = ceil($count / $per_page);
-  // end pagination
+  // end pagination  
 
   // query with pagination
   $query = query("SELECT * FROM products ORDER BY id DESC LIMIT $per_page OFFSET $page_1");
