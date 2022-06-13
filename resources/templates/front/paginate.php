@@ -2,6 +2,10 @@
 		
 	<ul class="pagination justify-content-center">
 	  <?php
+
+	  global $count;
+	  global $page;
+
 	  for ($i=1; $i <= $count ; $i++) { 
 	    if ($page == $i) {
 	      ?>

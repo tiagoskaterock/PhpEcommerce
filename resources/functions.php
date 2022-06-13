@@ -546,6 +546,11 @@ function info_message() {
 }
 
 
+function show_pagination() {
+	include(TEMPLATE_FRONT . DS . "paginate.php");
+}
+
+
 
 function get_total_products() {
 	$query = query("SELECT COUNT(id) as total FROM products");
