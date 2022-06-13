@@ -368,32 +368,12 @@ function escape_string($string) {
 function fetch_array($result) {
 	return mysqli_fetch_array($result);
 }
-
+ 
 
 function get_products() {
-	$query = query("SELECT * FROM products");
-	confirm($query);
 
-	while($row = fetch_array($query)) {
-		?>
-			<div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-        	<a href="item?id=<?= $row['id'] ?>">
-            <img src="uploads/<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
-        	</a>
-          <div class="caption">
-            <h4 class="pull-right">$ <?= $row['price'] ?></h4>
-            <h4><a href="item?id=<?= $row['id'] ?>"><?= $row['title'] ?></a>
-            </h4>
-            <p><?= substr($row['description'], 0, 90)  ?> ...</p>
 
-            <a class="btn btn-primary" href="resources/cart?add=<?= $row['id'] ?>">Add to Cart</a>
-          </div>
-        </div>
-      </div>
-		<?php
 
-	}
 }
 
 

@@ -31,9 +31,63 @@
             } ?>
         </h1>
 
-        <?php get_products() ?>
+        
+        <?php
+
+          // Pagination
+          $per_page = 2;
+
+          if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+          }
+          else {
+            $page = "";
+          }
+
+          if ($page == "" || $page == 1) {
+            $page_1 = 0;
+          }
+          else {
+            $page_1 = ($page * $per_page) - $per_page;
+          }      
+
+          $count = get_total_products();
+
+          $count = ceil($count / $per_page);
+          // end pagination
+
+          // query with pagination
+          $query = query("SELECT * FROM products ORDER BY id DESC LIMIT $per_page OFFSET $page_1");
+
+          confirm($query);
+
+          while($row = fetch_array($query)) {
+            ?>
+              <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                  <a href="item?id=<?= $row['id'] ?>">
+                    <img src="uploads/<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
+                  </a>
+                  <div class="caption">
+                    <h4 class="pull-right">$ <?= $row['price'] ?></h4>
+                    <h4><a href="item?id=<?= $row['id'] ?>"><?= $row['title'] ?></a>
+                    </h4>
+                    <p><?= substr($row['description'], 0, 90)  ?> ...</p>
+
+                    <a class="btn btn-primary" href="resources/cart?add=<?= $row['id'] ?>">Add to Cart</a>
+                  </div>
+                </div>
+              </div>
+
+            <?php
+
+          }
+
+        ?>
 
       </div><!-- row -->
+
+      <?php include(TEMPLATE_FRONT . DS . "paginate.php") ?>
 
     </div><!-- col-md-9 -->
 
